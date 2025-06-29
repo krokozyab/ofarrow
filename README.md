@@ -171,7 +171,8 @@ wget -O data.csv 'http://localhost:8081/query?sql=SELECT code_combination_id FRO
 ## ⚠️ Important Disclaimer
 
 Consult with your organization's security team before deployment. Ensure compliance with your security policies and standards.
-The project in its very early experimentation stage.
+
+### The project in its very early experimentation stage.
 
 ## 📝 TODO
 
