@@ -69,8 +69,7 @@ Before using this server, ensure you have the following:
 1. **Download the Server:**
    Download the latest version from the releases section.
 2. Create report in OTBI In you fusion instance, un-archive 
-DM_ARB.xdm.catalog and RP_ARB.xdo.catalog from otbireport catalog of this repository into /Shared Folders/Custom/Financials folder (that can be different if you will). If you already use my OFJDBC driver you may skip this step.
-Download reports from here [OTBI report](https://github.com/krokozyab/ofjdbc/tree/master/otbireport)
+DM_ARB.xdm.catalog and RP_ARB.xdo.catalog from [OTBI report](https://github.com/krokozyab/ofjdbc/tree/master/otbireport)  into /Shared Folders/Custom/Financials folder (that can be different if you will). If you already use my OFJDBC driver you may skip this step.
 
 2. **Set Environment Variables:**
    ```bash
