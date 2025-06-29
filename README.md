@@ -186,6 +186,7 @@ Consult with your organization's security team before deployment. Ensure complia
 
 - **High level ABCD driver with polars:** [High level ABCD driver with polars](https://gist.github.com/krokozyab/7cf1df6c5c7b6b1ea1b85fe150481156)
 - **Low level driver with pandas:** [Low level driver with pandas](https://gist.github.com/krokozyab/87485ac203afb2b357cb369dbcd4d1d8)
+- **Save vendors to parquet file:** [Save vendors to parquet file](https://gist.github.com/krokozyab/ef1b7999b518fb96897adeffb3982cfe)
 - **HTTP Linux Example:** [HTTP Linux Example](https://gist.github.com/krokozyab/2829b3f9d28530c45a1361cb519b94d6)
 - **HTTP MacOS Example:** [HTTP MAcOS Example](https://gist.github.com/krokozyab/c13b545abdc179e12205306ab9c4cb24)
 - **HTTP Windows Example:** [HTTP Windows Example](https://gist.github.com/krokozyab/312668fdebe991b38cc912d2f73fb23c)
