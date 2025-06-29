@@ -70,7 +70,7 @@ Before using this server, ensure you have the following:
    Download the latest version from the releases section (file orfujdbc-1.0-SNAPSHOT.jar).
 
    [![GitHub Downloads](https://img.shields.io/github/downloads/krokozyab/ofarrow/total?style=for-the-badge&logo=github)](https://github.com/krokozyab/ofarrow/releases)
-   [![GitHub Downloads](https://img.shields.io/github/downloads/krokozyab/ofjdbc/total?style=for-the-badge&logo=github)](https://github.com/krokozyab/ofjdbc/releases)
+
 3. Create report in OTBI In you fusion instance, un-archive 
 DM_ARB.xdm.catalog and RP_ARB.xdo.catalog from [OTBI report](https://github.com/krokozyab/ofjdbc/tree/master/otbireport)  into /Shared Folders/Custom/Financials folder (that can be different if you will). If you already use my OFJDBC driver you may skip this step.
 
