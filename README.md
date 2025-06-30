@@ -151,8 +151,6 @@ print(table.to_pandas())
 ### HTTP API
 ```bash
 # Get data as CSV
-curl -o data.csv 'http://localhost:8081/query?sql=SELECT * FROM fnd_currencies_tl WHERE rownum <= 100'
-
 # Using wget
 wget -O data.csv 'http://localhost:8081/query?sql=SELECT code_combination_id FROM gl_code_combinations WHERE rownum <= 50'
 ```
