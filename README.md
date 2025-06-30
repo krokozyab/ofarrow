@@ -84,7 +84,7 @@ DM_ARB.xdm.catalog and RP_ARB.xdo.catalog from [OTBI report](https://github.com/
    
 3. **Run the Server:**
    ```bash
-   java -jar oflight-1.0-SNAPSHOT.jar
+   java -jar orfujdbc-1.0-SNAPSHOT.jar
    ```
 **Windows**
 ```
@@ -100,7 +100,7 @@ $env:FLIGHT_PORT = "32010"
 $env:JAVA_TOOL_OPTIONS = "--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
 
 # Run the server
-java -jar oflight-1.0-SNAPSHOT.jar
+java -jar orfujdbc-1.0-SNAPSHOT.jar
 ```
 **MacOS**
 ```
@@ -117,7 +117,7 @@ export FLIGHT_PORT="32010"
 export JAVA_TOOL_OPTIONS="--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
 
 # Run the server
-java -jar oflight-1.0-SNAPSHOT.jar
+java -jar orfujdbc-1.0-SNAPSHOT.jar
 ```
 **Linux**
 ```
@@ -134,7 +134,7 @@ export FLIGHT_PORT="32010"
 export JAVA_TOOL_OPTIONS="--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
 
 # Run the server
-java -jar oflight-1.0-SNAPSHOT.jar
+java -jar orfujdbc-1.0-SNAPSHOT.jar
 ```
 ## ⚙️ Usage
 
