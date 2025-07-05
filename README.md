@@ -1,4 +1,4 @@
-# 🚀 Oracle Fusion Flight SQL Server
+# ✈️ Oracle Fusion Flight SQL Server
 
 **Zero-Infrastructure Data Access for Oracle Fusion** - Just one JAR file!
 
@@ -33,7 +33,7 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 
 ## 📄 Table of Contents
 
-- [🚀 Features](#-features)
+- [✈️ Features](#-features)
 - [🛠 Prerequisites](#-prerequisites)
 - [📝 Installation](#-installation)
 - [⚙️ Configuration](#-configuration)
@@ -46,7 +46,7 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 
 ---
 
-## 🚀 Features
+## ✈️ Features
 
 ### 📊 Multi-Format Data Export
 - **CSV** - Perfect for spreadsheets and data analysis
