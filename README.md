@@ -21,13 +21,14 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 | Limited export formats | **CSV, JSON, Excel, Parquet** |
 | Manual data pipeline setup | **Instant API access** |
 
-## 🎯 Perfect For
+## 🎯 Well-Suited For
 
 - **Data Scientists** - Direct Python/R access to Oracle Fusion data
 - **DevOps Teams** - Simple shell script automation with curl/wget
 - **Business Analysts** - One-click Excel exports for reporting
 - **Data Engineers** - Parquet exports for data lakes and analytics
 - **Integration Teams** - Standards-based API for any programming language
+- **ETL Orchestration** - Works seamlessly with Airflow, Prefect, Dagster, and other workflow engines
 
 ---
 
@@ -253,6 +254,62 @@ wget -O data.csv "http://localhost:8081/export?sql=SELECT * FROM invoices&format
 # Check server health
 curl http://localhost:8081/health
 # Returns: {"status":"UP","database":"UP","uptime_ms":12345,"response_time_ms":45}
+```
+
+### 🔄 Apache Airflow Integration
+```python
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from airflow.operators.bash import BashOperator
+from datetime import datetime, timedelta
+import pyarrow.flight as fl
+import pandas as pd
+
+def extract_oracle_fusion_data(**context):
+    """Extract data from Oracle Fusion via Flight SQL"""
+    client = fl.connect("grpc://localhost:32010")
+    sql = "SELECT * FROM gl_balances WHERE period_name = '{{ ds }}'"
+    table = client.execute(sql).read_all()
+    df = table.to_pandas()
+    
+    # Save to staging area
+    df.to_parquet(f"/data/staging/gl_balances_{{ ds }}.parquet")
+    return f"Extracted {len(df)} rows"
+
+dag = DAG(
+    'oracle_fusion_etl',
+    default_args={
+        'owner': 'data-team',
+        'retries': 1,
+        'retry_delay': timedelta(minutes=5)
+    },
+    schedule_interval='@daily',
+    start_date=datetime(2024, 1, 1),
+    catchup=False
+)
+
+# Extract task using Flight SQL
+extract_task = PythonOperator(
+    task_id='extract_fusion_data',
+    python_callable=extract_oracle_fusion_data,
+    dag=dag
+)
+
+# Alternative: Direct HTTP export
+export_task = BashOperator(
+    task_id='export_to_parquet',
+    bash_command='curl -o /data/raw/transactions_{{ ds }}.parquet "http://localhost:8081/export?sql=SELECT * FROM transactions WHERE date = \'{{ ds }}\'&format=parquet"',
+    dag=dag
+)
+
+# Load to data warehouse
+load_task = BashOperator(
+    task_id='load_to_warehouse',
+    bash_command='python /scripts/load_to_warehouse.py /data/staging/gl_balances_{{ ds }}.parquet',
+    dag=dag
+)
+
+extract_task >> load_task
 ```
 
 ---
