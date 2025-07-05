@@ -73,7 +73,7 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 - **Standard authentication** - Uses your existing Oracle Fusion login
 
 
-![Flight SQL Server](pics/flsrv.png)
+<img src="pics/flsrv.png" alt="Flight SQL Server" width="400">
 
 
 ## 🛠 Prerequisites
