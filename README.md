@@ -448,10 +448,7 @@ Consult with your organization's security team before deployment. Ensure complia
 ## 📝 Roadmap
 
 - ✅ **Multi-format exports** (CSV, JSON, Excel, Parquet)
-- ✅ **Health monitoring** and metrics
-- ✅ **Performance optimization** (8K row batches)
 - 🔄 **Query caching** for repeated requests
-- 🔄 **Metrics dashboard** for monitoring
 - 🔄 **SSL/TLS support** for secure connections
 
 ## 📚 Real-World Examples
