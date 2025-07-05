@@ -18,7 +18,7 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 | Multiple servers to manage | **Zero infrastructure** |
 | Expensive ETL licenses | **Completely free** |
 | Vendor lock-in | **Open standards (Arrow Flight SQL)** |
-| Limited export formats | **CSV, JSON, Excel, Parquet** |
+| Limited export formats | **CSV, JSON, Excel, Parquet, Hive** |
 | Manual data pipeline setup | **Instant API access** |
 
 ## 🎯 Well-Suited For
@@ -54,6 +54,7 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 - **JSON** - Ideal for web applications and APIs
 - **Excel** - Ready-to-use business reports with formatting
 - **Parquet** - Optimized columnar format for data lakes and analytics
+- **Hive Partitioned** - Partitioned Parquet files in ZIP archive for data lakes
 
 ### ⚡ Optimized Data Access
 - **Streaming processing** - Handle datasets with memory efficiency
@@ -247,6 +248,9 @@ curl "http://localhost:8081/export?sql=SELECT * FROM customers&format=json" | jq
 
 # Traditional CSV export
 wget -O data.csv "http://localhost:8081/export?sql=SELECT * FROM invoices&format=csv"
+
+# Hive partitioned export (ZIP archive)
+curl -o partitioned_data.zip "http://localhost:8081/export?sql=SELECT segment1, segment2, amount FROM gl_code_combinations&format=hive&partition=segment1"
 ```
 
 ### 🔍 Health Monitoring
@@ -312,6 +316,26 @@ load_task = BashOperator(
 extract_task >> load_task
 ```
 
+### 🗂 Hive Partitioned Export
+```bash
+# Export data partitioned by a specific column (returns ZIP archive)
+curl -G -o gl_partitioned.zip \
+  --data-urlencode "sql=SELECT segment1, segment2, segment3, concatenated_segments FROM gl_code_combinations" \
+  --data-urlencode "format=hive" \
+  --data-urlencode "partition=segment3" \
+  "http://localhost:8081/export"
+# Extract to see Hive-style directory structure
+unzip gl_partitioned.zip
+ls -la
+
+```
+
+** Suited for:**
+- 🏢 **Data Lakes** - Hive-compatible partitioned structure
+- ⚡ **Query Performance** - Partition pruning for faster analytics
+- 📁 **Data Organization** - Logical data separation by column values
+- 🔄 **ETL Pipelines** - Standard format for Spark, Hive, Presto
+
 ---
 
 ## 🌐 Server Access Points
@@ -331,6 +355,9 @@ wget -O report.xlsx "http://localhost:8081/export?sql=SELECT * FROM fnd_currenci
 
 # Parquet Export
 curl "http://localhost:8081/export?sql=SELECT * FROM fnd_currencies_tl&format=parquet" -o data.parquet
+
+# Hive Partitioned Export (ZIP archive)
+curl -o partitioned.zip "http://localhost:8081/export?sql=SELECT * FROM fnd_currencies_tl&format=hive&partition=currency_code"
 ```
 
 ### ⚡ Arrow Flight SQL (Python)
@@ -464,13 +491,15 @@ aws s3 cp daily_report_*.xlsx s3://reports-bucket/
 
 ### 🔄 Data Lake Integration
 ```bash
-# Bulk export to data lake
+# Bulk export to data lake with Hive partitioning
 for table in customers invoices payments; do
-  curl -o "${table}.parquet" \
-    "http://localhost:8081/export?sql=SELECT * FROM ${table}&format=parquet"
+  # Export with partitioning for better query performance
+  curl -o "${table}_partitioned.zip" \
+    "http://localhost:8081/export?sql=SELECT * FROM ${table}&format=hive&partition=region"
   
-  # Upload to data lake
-  hdfs dfs -put "${table}.parquet" /data/oracle_fusion/
+  # Extract and upload partitioned structure
+  unzip "${table}_partitioned.zip" -d "${table}_data/"
+  hdfs dfs -put "${table}_data/" /data/oracle_fusion/
 done
 ```
 
