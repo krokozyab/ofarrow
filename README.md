@@ -1,21 +1,33 @@
-# Arrow Flight SQL Server for Oracle Fusion
+# 🚀 Oracle Fusion Flight SQL Server
 
-A read-only Arrow Flight SQL server for Oracle Fusion, spun off from the [ofjdbc](https://github.com/krokozyab/ofjdbc) project to complement the ecosystem.
+**Zero-Infrastructure Data Access for Oracle Fusion** - Just one JAR file!
 
-While the root [ofjdbc project](https://github.com/krokozyab/ofjdbc) is well-suited for exploratory work within DBeaver IDE, this project provides a complete ecosystem by:
+Transform your Oracle Fusion into a modern data platform with **no servers to manage, no containers to deploy, no infrastructure to maintain**. Simply download one JAR file and instantly unlock:
 
-- **Easy Python scripting** via Arrow Flight clients for ETL tools like Apache Airflow, Prefect, Dagster
-- **HTTP endpoint** for loading CSV data using curl, wget, etc. - perfect for shell scripts and automation
-- **High-performance data transfer** using Apache Arrow's columnar format
-- **Streaming capabilities** for large datasets with automatic pagination
+✨ **Arrow Flight SQL Protocol** - Connect from Python, R, JavaScript, Go, Rust, and more  
+🌐 **HTTP REST API** - Export data with simple curl/wget commands  
+📊 **Multiple Export Formats** - CSV, JSON, Excel, and Parquet with one click  
+⚡ **Streaming Data Access** - Handle datasets with automatic pagination  
+🎯 **Zero Configuration** - Works out-of-the-box with your existing Oracle Fusion credentials  
 
-## Arrow Flight SQL Advantages
+## Why Choose This Over Traditional ETL?
 
-- **Columnar Data Format**: Apache Arrow's memory layout is optimized for analytical workloads
-- **Language Agnostic**: Native clients available for Python, R, Go, Rust, JavaScript, and more
-- **High Throughput**: Efficient binary protocol designed for large-scale data transfer (although bottlenecked by underlying Oracle Fusion reporting architecture)
-- **Streaming**: Handle datasets larger than memory with automatic batching
-- **Standards Compliant**: Implements Flight SQL specification for broad compatibility
+| Traditional ETL | Oracle Fusion Flight SQL |
+|---|---|
+| Complex infrastructure setup | **Single JAR file** |
+| Multiple servers to manage | **Zero infrastructure** |
+| Expensive ETL licenses | **Completely free** |
+| Vendor lock-in | **Open standards (Arrow Flight SQL)** |
+| Limited export formats | **CSV, JSON, Excel, Parquet** |
+| Manual data pipeline setup | **Instant API access** |
+
+## 🎯 Perfect For
+
+- **Data Scientists** - Direct Python/R access to Oracle Fusion data
+- **DevOps Teams** - Simple shell script automation with curl/wget
+- **Business Analysts** - One-click Excel exports for reporting
+- **Data Engineers** - Parquet exports for data lakes and analytics
+- **Integration Teams** - Standards-based API for any programming language
 
 ---
 
@@ -36,24 +48,32 @@ While the root [ofjdbc project](https://github.com/krokozyab/ofjdbc) is well-sui
 
 ## 🚀 Features
 
-### Flight SQL Server
-- **High-Performance Streaming**: Apache Arrow Flight SQL protocol for efficient data transfer
-- **Automatic Pagination**: Handles large Oracle Fusion datasets with built-in pagination
-- **Multi-Client Support**: Connect from Python, R, or any Flight SQL client
-- **Memory Efficient**: Columnar data format optimized for analytical workloads
+### 📊 Multi-Format Data Export
+- **CSV** - Perfect for spreadsheets and data analysis
+- **JSON** - Ideal for web applications and APIs
+- **Excel** - Ready-to-use business reports with formatting
+- **Parquet** - Optimized columnar format for data lakes and analytics
 
-### HTTP API
-- **Simple CSV Export**: Direct HTTP endpoint for curl/wget data extraction
-- **No Dependencies**: Works with any HTTP client or scripting language
-- **Command Line Friendly**: Perfect for shell scripts and automation
+### ⚡ Optimized Data Access
+- **Streaming processing** - Handle datasets with memory efficiency
+- **Automatic pagination** - Seamless handling of result sets
+- **Connection management** - Efficient resource utilization
 
-### Oracle Fusion Integration
-- **WSDL-Based**: Connects to Oracle Fusion via standard WSDL reporting services
-- **Credential Security**: Your credentials stay under your control
-- **Read-Only Access**: Safe for production environments
-- **Standard SQL**: Use familiar SQL syntax for Oracle Fusion data
+### 🌐 Dual Protocol Support
+- **Arrow Flight SQL** - Modern binary protocol for efficient data transfer
+- **HTTP REST API** - Simple endpoints for curl, wget, and web integration
+- **Health monitoring** - Built-in health checks and metrics
+- **Cross-platform** - Works on Windows, macOS, and Linux
 
----
+### 🔒 Enterprise-Ready Security
+- **Credential isolation** - Your Oracle Fusion credentials stay secure
+- **Read-only access** - Safe for production environments
+- **No data storage** - Zero data persistence, pure streaming
+- **Standard authentication** - Uses your existing Oracle Fusion login
+
+
+![Flight SQL Server](pics/flsrv.png)
+
 
 ## 🛠 Prerequisites
 
@@ -64,103 +84,254 @@ Before using this server, ensure you have the following:
 
 ---
 
-## 📝 Installation
+## 📝 Installation & Deployment
 
-1. **Download the Server:**
-   Download the latest version from the releases section (file orfujdbc-1.0-SNAPSHOT.jar).
+### 📦 What You Need
+
+
+1. **Java 17 or later** installed on your system
+2. **Oracle Fusion credentials** with WSDL reporting access
+3. **Downloaded files** from the releases section:
 
    [![GitHub Downloads](https://img.shields.io/github/downloads/krokozyab/ofarrow/total?style=for-the-badge&logo=github)](https://github.com/krokozyab/ofarrow/releases)
 
-3. Create report in OTBI In you fusion instance, un-archive 
-DM_ARB.xdm.catalog and RP_ARB.xdo.catalog from [OTBI report](https://github.com/krokozyab/ofjdbc/tree/master/otbireport)  into /Shared Folders/Custom/Financials folder (that can be different if you will). If you already use my OFJDBC driver you may skip this step.
+   - `orfujdbc-1.0-SNAPSHOT.jar` (main application)
+   - `config.env` (Unix/Linux/macOS configuration template)
+   - `config.bat` (Windows configuration template)
+   - `startup-gui.sh` (Unix/Linux/macOS GUI launcher)
+   - `startup-gui.bat` (Windows GUI launcher)
+   - `startup-server.sh` (Unix/Linux/macOS headless launcher)
+   - `startup-server.bat` (Windows headless launcher)
 
-2. **Set Environment Variables:**
-   ```bash
-   export OFJDBC_URL="jdbc:wsdl://<your-server>.oraclecloud.com/xmlpserver/services/ExternalReportWSSService?WSDL:/Custom/Financials/RP_ARB.xdo"
-   export OFJDBC_USER="your_username"
-   export OFJDBC_PASS="your_password"
-   export JAVA_TOOL_OPTIONS="--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
-   ```
-   
-3. **Run the Server:**
-   ```bash
-   java -jar orfujdbc-1.0-SNAPSHOT.jar
-   ```
-**Windows**
+### 📁 Directory Structure
+
+Create a dedicated folder and place all files together:
 ```
-# Flight SQL Server Startup Script - Windows PowerShell dots important . .\start-windows.ps1
-
-Write-Host "Starting Flight SQL Server for Oracle Fusion..." -ForegroundColor Green
-
-# Set environment variables
-$env:OFJDBC_URL = "jdbc:wsdl://<your-server>.oraclecloud.com/xmlpserver/services/ExternalReportWSSService?WSDL:/Custom/Financials/RP_ARB.xdo"
-$env:OFJDBC_USER = "your_username"
-$env:OFJDBC_PASS = "your_password"
-$env:FLIGHT_PORT = "32010"
-$env:JAVA_TOOL_OPTIONS = "--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
-
-# Run the server
-java -jar orfujdbc-1.0-SNAPSHOT.jar
+oracle-fusion-flight/
+├── orfujdbc-1.0-SNAPSHOT.jar    # Main application (REQUIRED)
+├── config.env                   # Unix/Linux/macOS config template
+├── config.bat                   # Windows config template
+├── startup-gui.sh              # Unix/Linux/macOS GUI launcher
+├── startup-gui.bat             # Windows GUI launcher
+├── startup-server.sh           # Unix/Linux/macOS headless launcher
+└── startup-server.bat          # Windows headless launcher
 ```
-**MacOS**
+
+### 🔧 Setup Oracle Fusion Report
+
+Create report in OTBI. In your Fusion instance, un-archive DM_ARB.xdm.catalog and RP_ARB.xdo.catalog from [OTBI report](https://github.com/krokozyab/ofjdbc/tree/master/otbireport) into /Shared Folders/Custom/Financials folder. If you already use OFJDBC driver, skip this step.
+
+---
+
+## 🐧 Unix/Linux/macOS Deployment
+
+### Step 1: Make Scripts Executable
+```bash
+cd oracle-fusion-flight
+chmod +x *.sh config.env
 ```
+
+### Step 2: Configure Oracle Fusion Credentials
+```bash
+# Copy the configuration template
+cp config.env my-config.env
+
+# Edit with your Oracle Fusion details
+nano my-config.env  # or vim, gedit, etc.
+```
+
+**Edit `my-config.env` with your credentials:**
+```bash
 #!/bin/bash
-# Flight SQL Server Startup Script - macOS
-
-echo "🚀 Starting Flight SQL Server for Oracle Fusion..."
-
-# Set environment variables
-export OFJDBC_URL="jdbc:wsdl://<your-server>.oraclecloud.com/xmlpserver/services/ExternalReportWSSService?WSDL:/Custom/Financials/RP_ARB.xdo"
+# Oracle Fusion Connection Details
+export OFJDBC_URL="jdbc:wsdl://your-server.oraclecloud.com/xmlpserver/services/ExternalReportWSSService?WSDL:/Custom/Financials/RP_ARB.xdo"
 export OFJDBC_USER="your_username"
 export OFJDBC_PASS="your_password"
 export FLIGHT_PORT="32010"
 export JAVA_TOOL_OPTIONS="--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
-
-# Run the server
-java -jar orfujdbc-1.0-SNAPSHOT.jar
 ```
-**Linux**
+
+### Step 3: Load Configuration
+```bash
+source my-config.env
 ```
-#!/bin/bash
-# Flight SQL Server Startup Script - Linux
 
-echo "🚀 Starting Flight SQL Server for Oracle Fusion..."
+### Step 4: Choose Your Mode
 
-# Set environment variables
-export OFJDBC_URL="jdbc:wsdl://<your-server>.oraclecloud.com/xmlpserver/services/ExternalReportWSSService?WSDL:/Custom/Financials/RP_ARB.xdo"
-export OFJDBC_USER="your_username"
-export OFJDBC_PASS="your_password"
-export FLIGHT_PORT="32010"
-export JAVA_TOOL_OPTIONS="--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
-
-# Run the server
-java -jar orfujdbc-1.0-SNAPSHOT.jar
+#### 🖥️ GUI Mode (Recommended for Desktop)
+```bash
+./startup-gui.sh
 ```
-## ⚙️ Usage
+- **Best for:** Desktop users, development, testing
+- **Features:** Visual interface, easy configuration, auto-start server
 
-### Python Client
+#### 💻 Headless Mode (Recommended for Servers)
+```bash
+./startup-server.sh
+```
+- **Best for:** Production servers, cloud deployments, automation
+- **Features:** No GUI, runs in background, lower resource usage
+
+---
+
+## 🪟 Windows Deployment
+
+### Step 1: Configure Oracle Fusion Credentials
+```cmd
+# Copy the configuration template
+copy config.bat my-config.bat
+
+# Edit with your Oracle Fusion details
+notepad my-config.bat
+```
+
+**Edit `my-config.bat` with your credentials:**
+```batch
+@echo off
+REM Oracle Fusion Connection Details
+set OFJDBC_URL=jdbc:wsdl://your-server.oraclecloud.com/xmlpserver/services/ExternalReportWSSService?WSDL:/Custom/Financials/RP_ARB.xdo
+set OFJDBC_USER=your_username
+set OFJDBC_PASS=your_password
+set FLIGHT_PORT=32010
+set JAVA_TOOL_OPTIONS=--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED
+```
+
+### Step 2: Load Configuration
+```cmd
+my-config.bat
+```
+
+### Step 3: Choose Your Mode
+
+#### 🖥️ GUI Mode (Recommended for Desktop)
+```cmd
+startup-gui.bat
+```
+- **Best for:** Desktop users, development, testing
+- **Features:** Visual interface, easy configuration
+
+#### 💻 Headless Mode (Recommended for Servers)
+```cmd
+startup-server.bat
+```
+- **Best for:** Production servers, cloud deployments, automation
+- **Features:** No GUI, runs in background, lower resource usage
+## ⚙️ Usage Examples
+
+### 🐍 Python Data Science
 ```python
 import pyarrow.flight as fl
+import pandas as pd
 
+# Connect to Flight SQL server
 client = fl.connect("grpc://localhost:32010")
-sql = "SELECT * FROM fnd_currencies_tl WHERE rownum <= 10"
+sql = "SELECT * FROM fnd_currencies_tl WHERE rownum <= 10000"
+
+# Get data as Arrow table (efficient format)
 table = client.execute(sql).read_all()
-print(table.to_pandas())
+df = table.to_pandas()
+print(f"Retrieved {len(df)} rows in seconds!")
 ```
 
-### HTTP API
+### 📊 Multi-Format Exports
 ```bash
-# Get data as CSV
-# Using wget
-wget -O data.csv 'http://localhost:8081/query?sql=SELECT code_combination_id FROM gl_code_combinations WHERE rownum <= 50'
+# Export to Excel for business reports
+wget -O report.xlsx "http://localhost:8081/export?sql=SELECT * FROM gl_balances&format=excel"
+
+# Export to Parquet for data lake
+curl -o data.parquet "http://localhost:8081/export?sql=SELECT * FROM transactions&format=parquet"
+
+# Export to JSON for web apps
+curl "http://localhost:8081/export?sql=SELECT * FROM customers&format=json" | jq .
+
+# Traditional CSV export
+wget -O data.csv "http://localhost:8081/export?sql=SELECT * FROM invoices&format=csv"
 ```
+
+### 🔍 Health Monitoring
+```bash
+# Check server health
+curl http://localhost:8081/health
+# Returns: {"status":"UP","database":"UP","uptime_ms":12345,"response_time_ms":45}
+```
+
+---
+
+## 🌐 Server Access Points
+
+Once started, the server provides multiple access methods:
+
+### 📊 Data Export Endpoints
+```bash
+# CSV Export (default)
+curl "http://localhost:8081/export?sql=SELECT * FROM fnd_currencies_tl" -o data.csv
+
+# JSON Export
+curl "http://localhost:8081/export?sql=SELECT * FROM fnd_currencies_tl&format=json" -o data.json
+
+# Excel Export
+wget -O report.xlsx "http://localhost:8081/export?sql=SELECT * FROM fnd_currencies_tl&format=excel"
+
+# Parquet Export
+curl "http://localhost:8081/export?sql=SELECT * FROM fnd_currencies_tl&format=parquet" -o data.parquet
+```
+
+### ⚡ Arrow Flight SQL (Python)
+```python
+import pyarrow.flight as fl
+client = fl.connect("grpc://localhost:32010")
+table = client.execute("SELECT * FROM fnd_currencies_tl").read_all()
+df = table.to_pandas()
+```
+
+## 🔧 Troubleshooting
+
+### ❌ "Java not found"
+```bash
+# Install Java 17+ on Ubuntu/Debian
+sudo apt update && sudo apt install openjdk-17-jdk
+
+# Install Java 17+ on macOS
+brew install openjdk@17
+
+# Install Java 17+ on Windows
+# Download from: https://adoptium.net/
+```
+
+### ❌ "JAR file not found"
+- Ensure `orfujdbc-1.0-SNAPSHOT.jar` is in the same directory as startup scripts
+- Check filename matches exactly (case-sensitive on Unix/Linux)
+
+### ❌ "Oracle Fusion credentials not found"
+- Run `source my-config.env` (Unix/Linux/macOS) or `my-config.bat` (Windows)
+- Verify your credentials are correct in the config file
+
+### ❌ "Permission denied" (Unix/Linux/macOS)
+```bash
+chmod +x startup-gui.sh startup-server.sh config.env
+```
+
+---
+
+## 📋 Quick Start Checklist
+
+- [ ] Java 17+ installed
+- [ ] All files in same directory
+- [ ] Scripts made executable (Unix/Linux/macOS)
+- [ ] Configuration file edited with credentials
+- [ ] Configuration loaded (`source` or run `.bat`)
+- [ ] Startup script executed
+- [ ] Health check successful: `curl http://localhost:8081/health`
+
+**You're ready to query Oracle Fusion data!** 🎉
+
+---
 
 ## ❗ Limitations
 
 - Read-only access to Oracle Fusion data
 - Requires Oracle Fusion WSDL reporting setup
 - Limited to SQL SELECT statements
-- Pagination handled automatically for large datasets
 - Some limitations are inherent to the underlying Oracle Fusion reporting architecture.
   For further insights on some of these challenges, see this article on using synchronous BIP for data extraction.
   https://www.ateam-oracle.com/post/using-synchronous-bip-for-extracting-data-dont
@@ -170,24 +341,92 @@ wget -O data.csv 'http://localhost:8081/query?sql=SELECT code_combination_id FRO
 
 Consult with your organization's security team before deployment. Ensure compliance with your security policies and standards.
 
-### The project in its very early experimentation stage.
 
-## 📝 TODO
+## 🎆 What Makes This Special
 
-- Enhanced error handling and logging
-- Additional metadata support
-- Performance optimizations
-- Extended authentication mechanisms
-- Excel integration
+### 📦 Single JAR Deployment
+- **No Docker containers** - Just run `java -jar`
+- **No Kubernetes clusters** - Works on any machine with Java
+- **No database servers** - Direct connection to Oracle Fusion
+- **No configuration files** - Environment variables only
 
-## 📚 Examples
+### 🚀 Efficiently Designed
+- **Streaming architecture** - Handle datasets with memory efficiency
+- **Columnar formats** - Parquet exports are more compact than CSV
+- **Connection reuse** - Efficient resource management
 
-- **High level ABCD driver with polars:** [High level ABCD driver with polars](https://gist.github.com/krokozyab/7cf1df6c5c7b6b1ea1b85fe150481156)
-- **Low level driver with pandas:** [Low level driver with pandas](https://gist.github.com/krokozyab/87485ac203afb2b357cb369dbcd4d1d8)
-- **Save vendors to parquet file:** [Save vendors to parquet file](https://gist.github.com/krokozyab/ef1b7999b518fb96897adeffb3982cfe)
-- **HTTP Linux Example:** [HTTP Linux Example](https://gist.github.com/krokozyab/2829b3f9d28530c45a1361cb519b94d6)
-- **HTTP MacOS Example:** [HTTP MAcOS Example](https://gist.github.com/krokozyab/c13b545abdc179e12205306ab9c4cb24)
-- **HTTP Windows Example:** [HTTP Windows Example](https://gist.github.com/krokozyab/312668fdebe991b38cc912d2f73fb23c)
+### 🌍 Universal Compatibility
+- **Any programming language** - Arrow Flight SQL clients everywhere
+- **Any operating system** - Windows, macOS, Linux
+- **Any deployment** - Local dev, cloud VMs, containers (optional)
+- **Any data tool** - Python, R, Tableau, Power BI, Excel
+
+## 📝 Roadmap
+
+- ✅ **Multi-format exports** (CSV, JSON, Excel, Parquet)
+- ✅ **Health monitoring** and metrics
+- ✅ **Performance optimization** (8K row batches)
+- 🔄 **Query caching** for repeated requests
+- 🔄 **Metrics dashboard** for monitoring
+- 🔄 **SSL/TLS support** for secure connections
+
+## 📚 Real-World Examples
+
+### 🐍 Python Data Pipeline
+```python
+# ETL Pipeline with Polars (Efficient Processing)
+import polars as pl
+import pyarrow.flight as fl
+
+client = fl.connect("grpc://localhost:32010")
+
+# Extract large dataset
+sql = "SELECT * FROM gl_balances WHERE period_name = '2024-01'"
+table = client.execute(sql).read_all()
+
+# Transform with Polars
+df = pl.from_arrow(table)
+result = df.group_by("account_code").agg(pl.col("amount").sum())
+
+# Load to Parquet
+result.write_parquet("monthly_balances.parquet")
+```
+
+### 📊 Business Intelligence
+```bash
+#!/bin/bash
+# Daily reporting automation
+
+# Export financial data to Excel
+wget -O "daily_report_$(date +%Y%m%d).xlsx" \
+  "http://localhost:8081/export?sql=SELECT * FROM daily_summary&format=excel"
+
+# Upload to cloud storage
+aws s3 cp daily_report_*.xlsx s3://reports-bucket/
+```
+
+### 🔄 Data Lake Integration
+```bash
+# Bulk export to data lake
+for table in customers invoices payments; do
+  curl -o "${table}.parquet" \
+    "http://localhost:8081/export?sql=SELECT * FROM ${table}&format=parquet"
+  
+  # Upload to data lake
+  hdfs dfs -put "${table}.parquet" /data/oracle_fusion/
+done
+```
+
+### 🌐 Web Application Integration
+```javascript
+// Fetch data for web dashboard
+fetch('http://localhost:8081/export?sql=SELECT * FROM kpis&format=json')
+  .then(response => response.json())
+  .then(data => {
+    // Render charts and dashboards
+    renderDashboard(data);
+  });
+```
 
 ## 🔗 Other
 
