@@ -8,7 +8,7 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 🌐 **HTTP REST API** - Export data with simple curl/wget commands  
 📊 **Multiple Export Formats** - CSV, JSON, Excel, and Parquet with one click  
 ⚡ **Streaming Data Access** - Handle datasets with automatic pagination  
-🎯 **Zero Configuration** - Works out-of-the-box with your existing Oracle Fusion credentials  
+🎯 **Minimal Configuration** - Just unarchive OTBI report and provide credentials  
 
 ## Why Choose This Over Traditional ETL?
 
