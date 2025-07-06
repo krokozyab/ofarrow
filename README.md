@@ -515,6 +515,10 @@ fetch('http://localhost:8081/export?sql=SELECT * FROM kpis&format=json')
 
 - **Root Project:** [ofjdbc - Oracle Fusion JDBC Driver](https://github.com/krokozyab/ofjdbc)
 
+- **Further reading:** Check out this article on Medium:  
+  [Simplifying Oracle Fusion Data Access with ofarrow](https://medium.com/@rudenko.s/simplifying-oracle-fusion-data-access-with-ofarrow-a78f59a18b12)
+
+
 ## 📫 Contact
 
 For questions or issues, reach out via GitHub Issues or [sergey.rudenko.ba@gmail.com](mailto:sergey.rudenko.ba@gmail.com).
