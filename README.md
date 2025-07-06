@@ -448,10 +448,7 @@ Consult with your organization's security team before deployment. Ensure complia
 ## 📝 Roadmap
 
 - ✅ **Multi-format exports** (CSV, JSON, Excel, Parquet)
-- ✅ **Health monitoring** and metrics
-- ✅ **Performance optimization** (8K row batches)
 - 🔄 **Query caching** for repeated requests
-- 🔄 **Metrics dashboard** for monitoring
 - 🔄 **SSL/TLS support** for secure connections
 
 ## 📚 Real-World Examples
@@ -517,6 +514,10 @@ fetch('http://localhost:8081/export?sql=SELECT * FROM kpis&format=json')
 ## 🔗 Other
 
 - **Root Project:** [ofjdbc - Oracle Fusion JDBC Driver](https://github.com/krokozyab/ofjdbc)
+
+- **Further reading:** Check out this article on Medium:  
+  [Simplifying Oracle Fusion Data Access with ofarrow](https://medium.com/@rudenko.s/simplifying-oracle-fusion-data-access-with-ofarrow-a78f59a18b12)
+
 
 ## 📫 Contact
 
