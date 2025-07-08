@@ -511,6 +511,91 @@ fetch('http://localhost:8081/export?sql=SELECT * FROM kpis&format=json')
   });
 ```
 
+### 🔍 Find Outliers in Accounting Entries
+```python
+import pyarrow.flight as fl
+import pyarrow as pa
+import polars as pl
+from sklearn.ensemble import IsolationForest
+from sklearn.preprocessing import LabelEncoder
+import numpy as np
+
+client = fl.FlightClient("grpc://localhost:32010")
+sql = """SELECT
+  gjh.JE_SOURCE,
+  gjh.JE_CATEGORY,
+  gjh.JE_FROM_SLA_FLAG,
+  gli.CREATED_BY,
+  gli.ACCOUNTED_DR,
+  gli.ACCOUNTED_CR,
+  gli.DESCRIPTION,
+  gcc.SEGMENT1,
+  gcc.SEGMENT2,
+  gcc.SEGMENT3,
+  gcc.SEGMENT4,
+  gcc.SEGMENT5,
+  gcc.SEGMENT6,
+  gcc.SEGMENT7
+FROM gl_je_lines gli
+JOIN GL_JE_HEADERS gjh
+  ON gli.JE_HEADER_ID = gjh.JE_HEADER_ID
+JOIN GL_CODE_COMBINATIONS gcc
+  ON gli.CODE_COMBINATION_ID = gcc.CODE_COMBINATION_ID
+WHERE
+  gli.PERIOD_NAME in ('Jan-25','Feb-25')"""
+descriptor = fl.FlightDescriptor.for_command(sql.encode("utf-8"))
+
+flight_info = client.get_flight_info(descriptor)
+reader = client.do_get(flight_info.endpoints[0].ticket)
+
+chunks = []
+for chunk in reader:
+    record_batch = chunk.data
+    print("🔄 Received batch:", record_batch.num_rows)
+    chunks.append(record_batch)
+
+# Combine all data
+table = pa.Table.from_batches(chunks)
+df = pl.from_arrow(table)
+
+# Convert numeric columns
+df = df.with_columns([
+    pl.col("ACCOUNTED_DR").str.replace("", "0").cast(pl.Float64, strict=False).fill_null(0).alias("ACCOUNTED_DR"),
+    pl.col("ACCOUNTED_CR").str.replace("", "0").cast(pl.Float64, strict=False).fill_null(0).alias("ACCOUNTED_CR")
+])
+
+# Prepare all features for Random Cut Forest
+feature_data = []
+
+# Numeric features
+feature_data.append(df["ACCOUNTED_DR"].to_numpy())
+feature_data.append(df["ACCOUNTED_CR"].to_numpy())
+
+# Encode categorical features
+for col in ["JE_SOURCE", "JE_CATEGORY", "JE_FROM_SLA_FLAG", "CREATED_BY", "SEGMENT1", "SEGMENT2", "SEGMENT3", "SEGMENT4", "SEGMENT5", "SEGMENT6", "SEGMENT7"]:
+    if col in df.columns:
+        le = LabelEncoder()
+        encoded = le.fit_transform(df[col].fill_null("NULL").to_numpy())
+        feature_data.append(encoded)
+
+features = np.column_stack(feature_data)
+
+# Apply Random Cut Forest to entire dataset with very low contamination
+iso_forest = IsolationForest(contamination=3/len(df), random_state=42)
+outlier_labels = iso_forest.fit_predict(features)
+
+# Get top 3 most anomalous records
+scores = iso_forest.decision_function(features)
+top_outlier_indices = np.argsort(scores)[:3]
+
+outliers_df = df[top_outlier_indices]
+if outliers_df.height > 0:
+    outliers_df.write_csv("outliers.csv")
+    print(f"📝 Written {outliers_df.height} outliers to outliers.csv")
+
+print("✅ Total rows:", len(df))
+```
+
 ## 🔗 Other
 
 - **Root Project:** [ofjdbc - Oracle Fusion JDBC Driver](https://github.com/krokozyab/ofjdbc)
