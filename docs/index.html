@@ -1,28 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=https://medium.com/@rudenko.s/simplifying-oracle-fusion-data-access-with-ofarrow-a78f59a18b12" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting to Medium Article</title>
+    <meta charset="UTF-8">
+    <title>ofarrow – Arrow Flight SQL Server for Oracle Fusion Cloud</title>
+    <meta name="description" content="ofarrow streams Oracle Fusion Cloud data in real time. One open-source JAR, any format – CSV, JSON, Excel, Parquet – zero vendor lock-in.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body {
-            font-family: sans-serif;
-            text-align: center;
-            padding-top: 50px;
+        /* ➜ colours and spacing intentionally match https://krokozyab.github.io/ofjdbc/ */
+        :root {
+            --bg-dark:#24292e;   /* same charcoal header */
+            --blue-btn:#2da44e;  /* green CTA button from ofjdbc theme */
+            --text:#434b53;
+            --bg-light:#f6f8fa;
         }
-        a {
-            color: #007acc;
-            text-decoration: none;
-            font-weight: bold;
-        }
+
+        body{font-family:-apple-system,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:var(--text);line-height:1.7;background:#fff}
+        header{background:var(--bg-dark);color:#fff;text-align:center;padding:3.5rem 1rem}
+        header h1{margin:0 0 .5rem;font-size:2.4rem;font-weight:600}
+        header p{margin:0 0 1.4rem;font-size:1.12rem;max-width:780px;margin-inline:auto}
+        .btn{display:inline-block;background:var(--blue-btn);color:#fff;text-decoration:none;font-weight:600;padding:.72rem 1.3rem;border-radius:6px;margin:.33rem}
+        section{padding:2.6rem 1rem;max-width:860px;margin:auto}
+        h2{margin-top:0;color:#1f2328;font-size:1.65rem}
+        ul{padding-left:1.2rem}
+        li{margin:.45rem 0}
+        .grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+        .grid div{background:var(--bg-light);padding:1rem 1.2rem;border-radius:6px}
+        table{border-collapse:collapse;width:100%;margin-top:1.3rem}
+        th,td{border:1px solid #d0d7de;padding:.6rem}
+        th{background:#ebf0f4;font-weight:600;text-align:left}
+        img{max-width:100%;border-radius:6px;display:block;margin:auto}
+        footer{text-align:center;font-size:.85rem;padding:1.8rem 1rem;background:var(--bg-light)}
+        @media(max-width:720px){.grid{grid-template-columns:1fr}}
     </style>
 </head>
 <body>
-<p>Redirecting to the Medium article:<br>
-    <a href="https://medium.com/@rudenko.s/simplifying-oracle-fusion-data-access-with-ofarrow-a78f59a18b12">
-        Simplifying Oracle Fusion Data Access with ofarrow
-    </a>
-</p>
+
+<header>
+    <h1>ofarrow</h1>
+    <p>Stream Oracle Fusion Cloud data in real time — one lightweight JAR, any format.</p>
+    <a class="btn" href="https://github.com/krokozyab/ofarrow/releases">Download</a>
+    <a class="btn" href="https://github.com/krokozyab/ofarrow">GitHub&nbsp;Repo</a>
+</header>
+
+<section>
+    <img style="width:70%;" src="https://raw.githubusercontent.com/krokozyab/ofarrow/main/pics/flsrv.png" alt="ofarrow server screenshot">
+</section>
+
+<section>
+    <h2>Why choose ofarrow?</h2>
+    <div class="grid">
+        <div>
+            <h3>Spin-up in seconds</h3>
+            <p>Place <code>ofarrow.jar</code> next to any project, point it at an existing OTBI report and run&colon; your Arrow Flight and REST endpoints are online in under a minute.</p>
+        </div>
+        <div>
+            <h3>Format freedom</h3>
+            <p>Give analysts Excel, data-engineers Parquet, developers JSON, and legacy systems CSV – all from a single URL parameter.</p>
+        </div>
+        <div>
+            <h3>Cloud-scale speed</h3>
+            <p>The service streams columnar Arrow batches that glide from Fusion into notebooks, dashboards or lake-houses with minimal overhead.</p>
+        </div>
+        <div>
+            <h3>Zero lock-in</h3>
+            <p>ofarrow is 100 % open source – no subscriptions, proprietary storage, or hidden throttles. It scales as your data lake grows.</p>
+        </div>
+    </div>
+</section>
+
+<section style="background:var(--bg-light);">
+    <h2>From night-long ETL to near-instant insight</h2>
+    <table>
+        <thead><tr><th style="width:50%">Yesterday’s workflow</th><th>ofarrow approach</th></tr></thead>
+        <tbody>
+        <tr><td>Schedule bulky ZIP extracts and wait overnight</td><td>Query live with SQL or REST whenever you need fresh numbers</td></tr>
+        <tr><td>Stage files into object storage before use</td><td>Stream directly into Pandas, Spark or your lake-house</td></tr>
+        <tr><td>Convert to required formats downstream</td><td>Choose CSV, JSON, Excel, Parquet or Hive partitions at the source</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2>Typical workflow</h2>
+    <ol>
+        <li><strong>Run</strong> <code>java -jar ofarrow.jar</code>.</li>
+        <li><strong>Explore</strong> data quickly in DBeaver, a Jupyter notebook, or any BI tool using the Arrow Flight connector.</li>
+        <li><strong>Export</strong> partitioned Parquet to S3 or ADLS for Athena, Starburst, or Snowflake.</li>
+        <li><strong>Automate</strong> daily jobs with simple <code>curl</code> calls – no heavyweight integration middleware.</li>
+    </ol>
+</section>
+
+<section style="background:var(--bg-light);">
+    <h2>Further reading &amp; resources</h2>
+    <ul>
+        <li>Deep-dive article on Medium → <a href="https://medium.com/@rudenko.s/simplifying-oracle-fusion-data-access-with-ofarrow-a78f59a18b12">Simplifying Oracle Fusion Data Access&nbsp;with ofarrow</a></li>
+        <li>Companion JDBC driver → <a href="https://krokozyab.github.io/ofjdbc/">ofjdbc – query Fusion with any SQL IDE</a></li>
+        <li>Source code &amp; issues → <a href="https://github.com/krokozyab/ofarrow">GitHub repository</a></li>
+    </ul>
+</section>
+
+<footer>
+    © 2025 • Maintained by <a href="https://github.com/krokozyab">Sergey Rudenko</a>
+</footer>
+
 </body>
 </html>
