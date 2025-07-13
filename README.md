@@ -8,6 +8,7 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 🌐 **HTTP REST API** - Export data with simple curl/wget commands  
 📊 **Multiple Export Formats** - CSV, JSON, Excel, and Parquet with one click  
 ⚡ **Streaming Data Access** - Handle datasets with automatic pagination  
+🖥️ **Built-in SQL Editor & Export** - Execute ad-hoc SQL queries using the integrated editor with basic syntax highlighting and result previews, and export results directly to CSV or Excel with one click.   
 🎯 **Minimal Configuration** - Just unarchive OTBI report and provide credentials  
 
 ## Why Choose This Over Traditional ETL?
@@ -74,7 +75,12 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 - **Standard authentication** - Uses your existing Oracle Fusion login
 
 
-<img src="pics/flsrv.png" alt="Flight SQL Server" width="600">
+<img src="pics/server_connection.png" alt="Flight SQL Server" width="600">
+
+<img src="pics/server_logs.png" alt="Flight SQL Server" width="600">
+
+<img src="pics/server_sql.png" alt="Flight SQL Server" width="600">
+
 
 
 ## 🛠 Prerequisites
