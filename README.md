@@ -226,38 +226,10 @@ startup-server.bat
 - **Features:** No GUI, runs in background, lower resource usage
 ## ⚙️ Usage Examples
 
-### 🐍 Python Data Science
-```python
-import pyarrow.flight as fl
-import pandas as pd
+[### 🐍 Python Data Science](https://gist.github.com/krokozyab/f20b868d4b9c2a1ba12a52e1ada1a07d)
 
-# Connect to Flight SQL server
-client = fl.connect("grpc://localhost:32010")
-sql = "SELECT * FROM fnd_currencies_tl WHERE rownum <= 10000"
+[### 📊 Multi-Format Exports](https://gist.github.com/krokozyab/92e6c977bd3f593f7d39a678a52a57a1)
 
-# Get data as Arrow table (efficient format)
-table = client.execute(sql).read_all()
-df = table.to_pandas()
-print(f"Retrieved {len(df)} rows in seconds!")
-```
-
-### 📊 Multi-Format Exports
-```bash
-# Export to Excel for business reports
-wget -O report.xlsx "http://localhost:8081/export?sql=SELECT * FROM gl_balances&format=excel"
-
-# Export to Parquet for data lake
-curl -o data.parquet "http://localhost:8081/export?sql=SELECT * FROM transactions&format=parquet"
-
-# Export to JSON for web apps
-curl "http://localhost:8081/export?sql=SELECT * FROM customers&format=json" | jq .
-
-# Traditional CSV export
-wget -O data.csv "http://localhost:8081/export?sql=SELECT * FROM invoices&format=csv"
-
-# Hive partitioned export (ZIP archive)
-curl -o partitioned_data.zip "http://localhost:8081/export?sql=SELECT segment1, segment2, amount FROM gl_code_combinations&format=hive&partition=segment1"
-```
 
 ### 🔍 Health Monitoring
 ```bash
@@ -266,61 +238,8 @@ curl http://localhost:8081/health
 # Returns: {"status":"UP","database":"UP","uptime_ms":12345,"response_time_ms":45}
 ```
 
-### 🔄 Apache Airflow Integration
-```python
-from airflow import DAG
-from airflow.operators.python import PythonOperator
-from airflow.operators.bash import BashOperator
-from datetime import datetime, timedelta
-import pyarrow.flight as fl
-import pandas as pd
+[### 🔄 Apache Airflow Integration](https://gist.github.com/krokozyab/69f880e78ca4654faba021c304d48eb0)
 
-def extract_oracle_fusion_data(**context):
-    """Extract data from Oracle Fusion via Flight SQL"""
-    client = fl.connect("grpc://localhost:32010")
-    sql = "SELECT * FROM gl_balances WHERE period_name = '{{ ds }}'"
-    table = client.execute(sql).read_all()
-    df = table.to_pandas()
-    
-    # Save to staging area
-    df.to_parquet(f"/data/staging/gl_balances_{{ ds }}.parquet")
-    return f"Extracted {len(df)} rows"
-
-dag = DAG(
-    'oracle_fusion_etl',
-    default_args={
-        'owner': 'data-team',
-        'retries': 1,
-        'retry_delay': timedelta(minutes=5)
-    },
-    schedule_interval='@daily',
-    start_date=datetime(2024, 1, 1),
-    catchup=False
-)
-
-# Extract task using Flight SQL
-extract_task = PythonOperator(
-    task_id='extract_fusion_data',
-    python_callable=extract_oracle_fusion_data,
-    dag=dag
-)
-
-# Alternative: Direct HTTP export
-export_task = BashOperator(
-    task_id='export_to_parquet',
-    bash_command='curl -o /data/raw/transactions_{{ ds }}.parquet "http://localhost:8081/export?sql=SELECT * FROM transactions WHERE date = \'{{ ds }}\'&format=parquet"',
-    dag=dag
-)
-
-# Load to data warehouse
-load_task = BashOperator(
-    task_id='load_to_warehouse',
-    bash_command='python /scripts/load_to_warehouse.py /data/staging/gl_balances_{{ ds }}.parquet',
-    dag=dag
-)
-
-extract_task >> load_task
-```
 
 ### 🗂 Hive Partitioned Export
 ```bash
