@@ -99,21 +99,14 @@ Before using this server, ensure you have the following:
 
 1. **Java 17 or later** installed on your system
 2. **Oracle Fusion credentials** with WSDL reporting access
-3. **Downloaded files** from the releases section:
+3. **Downloaded** oracle-fusion-flight-release.zip file from the latest release:
 
    [![GitHub Downloads](https://img.shields.io/github/downloads/krokozyab/ofarrow/total?style=for-the-badge&logo=github)](https://github.com/krokozyab/ofarrow/releases)
 
-   - `orfujdbc-1.0-SNAPSHOT.jar` (main application)
-   - `config.env` (Unix/Linux/macOS configuration template)
-   - `config.bat` (Windows configuration template)
-   - `startup-gui.sh` (Unix/Linux/macOS GUI launcher)
-   - `startup-gui.bat` (Windows GUI launcher)
-   - `startup-server.sh` (Unix/Linux/macOS headless launcher)
-   - `startup-server.bat` (Windows headless launcher)
+Unzip oracle-fusion-flight-release.zip into designated folder
 
 ### 📁 Directory Structure
 
-Create a dedicated folder and place all files together:
 ```
 oracle-fusion-flight/
 ├── orfujdbc-1.0-SNAPSHOT.jar    # Main application (REQUIRED)
@@ -135,8 +128,7 @@ Create report in OTBI. In your Fusion instance, un-archive DM_ARB.xdm.catalog an
 
 ### Step 1: Make Scripts Executable
 ```bash
-cd oracle-fusion-flight
-chmod +x *.sh config.env
+chmod +x *.sh 
 ```
 
 ### Step 2: Configure Oracle Fusion Credentials
