@@ -82,6 +82,9 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 <img src="pics/server_sql.png" alt="Flight SQL Server" width="600">
 
 
+#### Coming soon
+<img src="pics/autocompletion.gif" alt="Flight SQL Server" width="600">
+
 
 ## 🛠 Prerequisites
 
