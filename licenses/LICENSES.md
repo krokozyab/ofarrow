@@ -133,4 +133,4 @@ This distribution of FusionFlight bundles the following open-source components.
 
 ### Proprietary Notice
 
-All other code and assets in this distribution are proprietary to **FusionFlight** and are provided “AS IS,” without warranty. © 2025 Your Name or Company. All rights reserved.  
+All other code and assets in this distribution are proprietary to **FusionFlight** and are provided “AS IS,” without warranty. © 2025 Sergey Rudenko. All rights reserved.  
