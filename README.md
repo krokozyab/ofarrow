@@ -50,6 +50,8 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 
 ## ✨ Features
 
+### SQL editor with autocompletion
+
 ### 📊 Multi-Format Data Export
 - **CSV** - Perfect for spreadsheets and data analysis
 - **JSON** - Ideal for web applications and APIs
