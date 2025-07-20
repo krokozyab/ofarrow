@@ -7,7 +7,7 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 🖥️ **Built-in SQL Editor & Export** - Execute ad-hoc SQL queries using the integrated editor with syntax highlightings, autocompletion and result previews, and export results directly to CSV or Excel with one click.   
 ✨ **Arrow Flight SQL Protocol** - Connect from Python, R, JavaScript, Go, Rust, and more  
 🌐 **HTTP REST API** - Export data with simple curl/wget commands  
-📊 **Multiple Export Formats** - CSV, JSON, Excel, and Parquet with one click  
+📊 **Multiple Export Formats** - CSV, JSON, Excel, and Parquet with hive support  
 ⚡ **Streaming Data Access** - Handle datasets with automatic pagination   
 🎯 **Minimal Configuration** - Just unarchive OTBI report and provide credentials  
 
