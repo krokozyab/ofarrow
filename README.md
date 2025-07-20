@@ -2,13 +2,13 @@
 
 **Zero-Infrastructure Data Access for Oracle Fusion** - Just one JAR file!
 
-Transform your Oracle Fusion into a modern data platform with **no servers to manage, no containers to deploy, no infrastructure to maintain**. Simply download one JAR file and instantly unlock:
+Transform your Oracle Fusion into a modern data platform with **no servers to manage, no containers to deploy, no infrastructure to maintain**. Download the Windows or macOS installer and start using the app instantly:
 
+🖥️ **Built-in SQL Editor & Export** - Execute ad-hoc SQL queries using the integrated editor with basic syntax highlighting and result previews, and export results directly to CSV or Excel with one click.
 ✨ **Arrow Flight SQL Protocol** - Connect from Python, R, JavaScript, Go, Rust, and more  
 🌐 **HTTP REST API** - Export data with simple curl/wget commands  
 📊 **Multiple Export Formats** - CSV, JSON, Excel, and Parquet with one click  
-⚡ **Streaming Data Access** - Handle datasets with automatic pagination  
-🖥️ **Built-in SQL Editor & Export** - Execute ad-hoc SQL queries using the integrated editor with basic syntax highlighting and result previews, and export results directly to CSV or Excel with one click.   
+⚡ **Streaming Data Access** - Handle datasets with automatic pagination   
 🎯 **Minimal Configuration** - Just unarchive OTBI report and provide credentials  
 
 ## Why Choose This Over Traditional ETL?
@@ -50,8 +50,6 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 
 ## ✨ Features
 
-### SQL editor with autocompletion
-
 ### 📊 Multi-Format Data Export
 - **CSV** - Perfect for spreadsheets and data analysis
 - **JSON** - Ideal for web applications and APIs
@@ -68,8 +66,7 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 - **Arrow Flight SQL** - Modern binary protocol for efficient data transfer
 - **HTTP REST API** - Simple endpoints for curl, wget, and web integration
 - **Health monitoring** - Built-in health checks and metrics
-- **Cross-platform** - Works on Windows, macOS, and Linux
-
+- **Cross-platform** - Works on Windows and macOS
 
 
 <img src="pics/server_connection.png" alt="Flight SQL Server" width="600">
