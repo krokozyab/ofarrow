@@ -189,25 +189,6 @@ df = table.to_pandas()
 Consult with your organization's security team before deployment. Ensure compliance with your security policies and standards.
 
 
-## 🎆 What Makes This Special
-
-### 📦 Single JAR Deployment
-- **No Docker containers** - Installers provided`
-- **No Kubernetes clusters** - Works on any machine with Java
-- **No database servers** - Direct connection to Oracle Fusion
-- **No configuration files** 
-
-### 🚀 Efficiently Designed
-- **Streaming architecture** - Handle datasets with memory efficiency
-- **Columnar formats** - Parquet exports are more compact than CSV
-- **Connection reuse** - Efficient resource management
-
-### 🌍 Universal Compatibility
-- **Any programming language** - Arrow Flight SQL clients everywhere
-- **Any operating system** - Windows, macOS, Linux
-- **Any deployment** - Local dev, cloud VMs, containers (optional)
-- **Any data tool** - Python, R, Tableau, Power BI, Excel
-
 ## 📝 Roadmap
 
 - ✅ **Multi-format exports** (CSV, JSON, Excel, Parquet)
