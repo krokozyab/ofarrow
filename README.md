@@ -90,8 +90,8 @@ Before using this server, ensure you have the following:
 
 ### 📦 What You Need
 
-1  **Oracle Fusion credentials** with WSDL reporting access
-2  **Downloaded** oracle-fusion-flight-release.zip file from the latest release:
+1  **Oracle Fusion credentials** with WSDL reporting access   
+2  **Download the Windows or macOS installer** from the latest release.:
 
 **You're ready to query Oracle Fusion data!** 🎉
 
