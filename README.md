@@ -13,14 +13,14 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 
 ## Why Choose This Over Traditional ETL?
 
-| Traditional ETL | Oracle Fusion Flight SQL              |
-|---|---------------------------------------|
+| Traditional ETL              | Oracle Fusion Flight SQL              |
+|------------------------------|---------------------------------------|
 | Complex infrastructure setup | **Windows & macOS installers**        |
-| Multiple servers to manage | **Zero infrastructure**               |
-| Expensive ETL licenses | **Completely free**                   |
-| Vendor lock-in | **Open standards (Arrow Flight SQL)** |
-| Limited export formats | **CSV, JSON, Excel, Parquet, Hive**   |
-| Manual data pipeline setup | **Instant API access**                |
+| Multiple servers to manage   | **Zero infrastructure**               |
+| Expensive ETL licenses       | **Completely free**                   |
+| Vendor lock-in               | **Open standards (Arrow Flight SQL)** |
+| Limited export formats       | **CSV, JSON, Excel, Parquet, Hive**   |
+| Manual data pipeline setup   | **Instant API access**                |
 
 ## 🎯 Well-Suited For
 
