@@ -1,6 +1,6 @@
 # ✈️ Oracle Fusion Flight SQL Server
 
-**Zero-Infrastructure Data Access for Oracle Fusion** - Just one JAR file!
+**Zero-Infrastructure Data Access for Oracle Fusion**
 
 Transform your Oracle Fusion into a modern data platform with **no servers to manage, no containers to deploy, no infrastructure to maintain**. Download the Windows or macOS installer and start using the app instantly:
 
