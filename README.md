@@ -68,11 +68,6 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 - **Health monitoring** - Built-in health checks and metrics
 - **Cross-platform** - Works on Windows, macOS, and Linux
 
-### 🔒 Enterprise-Ready Security
-- **Credential isolation** - Your Oracle Fusion credentials stay secure
-- **Read-only access** - Safe for production environments
-- **No data storage** - Zero data persistence, pure streaming
-- **Standard authentication** - Uses your existing Oracle Fusion login
 
 
 <img src="pics/server_connection.png" alt="Flight SQL Server" width="600">
@@ -81,8 +76,6 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 
 <img src="pics/server_sql.png" alt="Flight SQL Server" width="600">
 
-
-#### Coming soon
 <img src="pics/autocompletion.gif" alt="Flight SQL Server" width="600">
 
 
@@ -90,8 +83,7 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 
 Before using this server, ensure you have the following:
 
-- **Oracle Fusion Access:** Valid credentials with access to Oracle Fusion reporting (via WSDL).
-- **JDK/JRE:** A Java 17 (or later) runtime installed on your machine.
+- **Oracle Fusion Access:** Valid credentials with access to Oracle Fusion reporting.
 
 ---
 
@@ -99,126 +91,19 @@ Before using this server, ensure you have the following:
 
 ### 📦 What You Need
 
+1  **Oracle Fusion credentials** with WSDL reporting access
+2  **Downloaded** oracle-fusion-flight-release.zip file from the latest release:
 
-1. **Java 17 or later** installed on your system
-2. **Oracle Fusion credentials** with WSDL reporting access
-3. **Downloaded** oracle-fusion-flight-release.zip file from the latest release:
+**You're ready to query Oracle Fusion data!** 🎉
 
    [![GitHub Downloads](https://img.shields.io/github/downloads/krokozyab/ofarrow/total?style=for-the-badge&logo=github)](https://github.com/krokozyab/ofarrow/releases)
 
-Unzip oracle-fusion-flight-release.zip into designated folder
-
-### 📁 Directory Structure
-
-```
-oracle-fusion-flight/
-├── orfujdbc-1.0-SNAPSHOT.jar    # Main application (REQUIRED)
-├── config.env                   # Unix/Linux/macOS config template
-├── config.bat                   # Windows config template
-├── startup-gui.sh              # Unix/Linux/macOS GUI launcher
-├── startup-gui.bat             # Windows GUI launcher
-├── startup-server.sh           # Unix/Linux/macOS headless launcher
-└── startup-server.bat          # Windows headless launcher
-```
 
 ### 🔧 Setup Oracle Fusion Report
 
-Create report in OTBI. In your Fusion instance, un-archive DM_ARB.xdm.catalog and RP_ARB.xdo.catalog from [OTBI report](https://github.com/krokozyab/ofarrow/tree/master/otbi) into /Shared Folders/Custom/Financials folder.
+1. Create report in OTBI. In your Fusion instance, un-archive DM_ARB.xdm.catalog and RP_ARB.xdo.catalog from [OTBI report](https://github.com/krokozyab/ofarrow/tree/master/otbi) into /Shared Folders/Custom/Financials folder.
+2. Install the application by downloading the appropriate installer from the Releases page—available for both Windows and macOS.
 
----
-
-## 🐧 Unix/Linux/macOS Deployment
-
-### Step 1: Make Scripts Executable
-```bash
-chmod +x *.sh 
-```
-
-### Step 2: Configure Oracle Fusion Credentials
-```bash
-# Copy the configuration template
-cp config.env my-config.env
-
-# Edit with your Oracle Fusion details
-nano my-config.env  # or vim, gedit, etc.
-```
-
-**Edit `my-config.env` with your credentials:**
-```bash
-#!/bin/bash
-# Oracle Fusion Connection Details
-export OFJDBC_URL="jdbc:wsdl://your-server.oraclecloud.com/xmlpserver/services/ExternalReportWSSService?WSDL:/Custom/Financials/RP_ARB.xdo"
-export OFJDBC_USER="your_username"
-export OFJDBC_PASS="your_password"
-export FLIGHT_PORT="32010"
-export JAVA_TOOL_OPTIONS="--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
-```
-
-### Step 3: Load Configuration
-```bash
-source my-config.env
-```
-
-### Step 4: Choose Your Mode
-
-#### 🖥️ GUI Mode (Recommended for Desktop)
-```bash
-./startup-gui.sh
-```
-- **Best for:** Desktop users, development, testing
-- **Features:** Visual interface, easy configuration, auto-start server
-
-#### 💻 Headless Mode (Recommended for Servers)
-```bash
-./startup-server.sh
-```
-- **Best for:** Production servers, cloud deployments, automation
-- **Features:** No GUI, runs in background, lower resource usage
-
----
-
-## 🪟 Windows Deployment
-
-### Step 1: Configure Oracle Fusion Credentials
-```cmd
-# Copy the configuration template
-copy config.bat my-config.bat
-
-# Edit with your Oracle Fusion details
-notepad my-config.bat
-```
-
-**Edit `my-config.bat` with your credentials:**
-```batch
-@echo off
-REM Oracle Fusion Connection Details
-set OFJDBC_URL=jdbc:wsdl://your-server.oraclecloud.com/xmlpserver/services/ExternalReportWSSService?WSDL:/Custom/Financials/RP_ARB.xdo
-set OFJDBC_USER=your_username
-set OFJDBC_PASS=your_password
-set FLIGHT_PORT=32010
-set JAVA_TOOL_OPTIONS=--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED
-```
-
-### Step 2: Load Configuration
-```cmd
-my-config.bat
-```
-
-### Step 3: Choose Your Mode
-
-#### 🖥️ GUI Mode (Recommended for Desktop)
-```cmd
-startup-gui.bat
-```
-- **Best for:** Desktop users, development, testing
-- **Features:** Visual interface, easy configuration
-
-#### 💻 Headless Mode (Recommended for Servers)
-```cmd
-startup-server.bat
-```
-- **Best for:** Production servers, cloud deployments, automation
-- **Features:** No GUI, runs in background, lower resource usage
 ## ⚙️ Usage Examples
 
 [### 🐍 Python Data Science](https://gist.github.com/krokozyab/f20b868d4b9c2a1ba12a52e1ada1a07d)
@@ -288,47 +173,6 @@ table = client.execute("SELECT * FROM fnd_currencies_tl").read_all()
 df = table.to_pandas()
 ```
 
-## 🔧 Troubleshooting
-
-### ❌ "Java not found"
-```bash
-# Install Java 17+ on Ubuntu/Debian
-sudo apt update && sudo apt install openjdk-17-jdk
-
-# Install Java 17+ on macOS
-brew install openjdk@17
-
-# Install Java 17+ on Windows
-# Download from: https://adoptium.net/
-```
-
-### ❌ "JAR file not found"
-- Ensure `orfujdbc-1.0-SNAPSHOT.jar` is in the same directory as startup scripts
-- Check filename matches exactly (case-sensitive on Unix/Linux)
-
-### ❌ "Oracle Fusion credentials not found"
-- Run `source my-config.env` (Unix/Linux/macOS) or `my-config.bat` (Windows)
-- Verify your credentials are correct in the config file
-
-### ❌ "Permission denied" (Unix/Linux/macOS)
-```bash
-chmod +x startup-gui.sh startup-server.sh config.env
-```
-
----
-
-## 📋 Quick Start Checklist
-
-- [ ] Java 17+ installed
-- [ ] All files in same directory
-- [ ] Scripts made executable (Unix/Linux/macOS)
-- [ ] Configuration file edited with credentials
-- [ ] Configuration loaded (`source` or run `.bat`)
-- [ ] Startup script executed
-- [ ] Health check successful: `curl http://localhost:8081/health`
-
-**You're ready to query Oracle Fusion data!** 🎉
-
 ---
 
 ## ❗ Limitations
@@ -349,10 +193,10 @@ Consult with your organization's security team before deployment. Ensure complia
 ## 🎆 What Makes This Special
 
 ### 📦 Single JAR Deployment
-- **No Docker containers** - Just run `java -jar`
+- **No Docker containers** - Installers provided`
 - **No Kubernetes clusters** - Works on any machine with Java
 - **No database servers** - Direct connection to Oracle Fusion
-- **No configuration files** - Environment variables only
+- **No configuration files** 
 
 ### 🚀 Efficiently Designed
 - **Streaming architecture** - Handle datasets with memory efficiency
