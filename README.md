@@ -95,7 +95,7 @@ Before using this server, ensure you have the following:
 
 **You're ready to query Oracle Fusion data!** 🎉
 
-   [![GitHub Downloads](https://img.shields.io/github/downloads-pre/krokozyab/ofarrow/total?style=for-the-badge&logo=github)](https://github.com/krokozyab/ofarrow/releases) <- Download the installer here.
+   [![Download Installer](https://img.shields.io/static/v1?label=Download&message=Installer&color=blue&style=for-the-badge&logo=github)](https://github.com/krokozyab/ofarrow/releases) <- Download the installer here.
 
 
 ### 🔧 Setup Oracle Fusion Report
