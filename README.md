@@ -31,6 +31,8 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 - **Integration Teams** - Standards-based API for any programming language
 - **ETL Orchestration** - Works seamlessly with Airflow, Prefect, Dagster, and other workflow engines
 
+  [![IDE Watch the demo](https://img.shields.io/badge/▶️%20Watch%20Demo-red?logo=youtube&logoColor=white)](https://youtu.be/jdHffE1RxuA?si=Fmi1jE9S4vfZ1Z4T)
+
 ---
 
 ## 📄 Table of Contents
@@ -72,8 +74,6 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 <!-- <img src="pics/server_connection.png" alt="Flight SQL Server" width="600"> -->
 
 <!-- <img src="pics/server_logs.png" alt="Flight SQL Server" width="600"> -->
-
-[![IDE Watch the demo](https://img.shields.io/badge/▶️%20Watch%20Demo-red?logo=youtube&logoColor=white)](https://youtu.be/jdHffE1RxuA?si=Fmi1jE9S4vfZ1Z4T)
 
 
 
