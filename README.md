@@ -11,10 +11,10 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 ⚡ **Streaming Data Access** - Handle datasets with automatic pagination   
 🎯 **Minimal Configuration** - Just unarchive OTBI report and provide credentials  
 
-*IDE
+IDE   
 [![Watch the demo](https://img.shields.io/badge/▶️%20Watch%20Demo-red?logo=youtube&logoColor=white)](https://youtu.be/jdHffE1RxuA?si=Fmi1jE9S4vfZ1Z4T)
 
-*Excel integration
+Excel integration   
 [![Watch the demo](https://img.shields.io/badge/▶️%20Watch%20Demo-red?logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=K63LvHCZZwM)
 
 ## Why Choose This Over Traditional ETL?
