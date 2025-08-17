@@ -2,204 +2,220 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ofarrow – Native Arrow Flight SQL Server for Oracle Fusion Cloud</title>
-  <meta name="description" content="ofarrow streams Oracle Fusion Cloud data in real time. Native installers for macOS and Windows—no Java required. Export to CSV, JSON, Excel, or Parquet." />
+  <title>ofarrow – Arrow Flight SQL for Oracle Fusion Cloud</title>
+  <meta name="description" content="Stream Oracle Fusion Cloud data in real time — now as native apps with installers for macOS and Windows. No Java setup, no complexity." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    /* keep visual language close to your ofjdbc site */
+    /* base */
     :root{
       --bg-dark:#24292e;
-      --cta:#2da44e;
-      --cta-hover:#2c974b;
-      --text:#434b53;
-      --bg:#ffffff;
-      --bg-soft:#f6f8fa;
-      --ink:#1f2328;
-      --border:#d0d7de;
-      --muted:#6b7380;
-    }
-    @media (prefers-color-scheme: dark){
-      :root{
-        --bg:#0d1117;
-        --bg-soft:#161b22;
-        --text:#c9d1d9;
-        --ink:#e6edf3;
-        --border:#30363d;
-      }
+      --brand:#2da44e;
+      --text:#1f2328;
+      --muted:#5a5f66;
+      --panel:#f6f8fa;
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:-apple-system,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
-    a{color:inherit}
-    header{background:var(--bg-dark);color:#fff;text-align:center;padding:3.5rem 1rem}
-    header h1{margin:0 0 .6rem;font-size:2.6rem;font-weight:700;letter-spacing:.2px}
-    header p{margin:0 auto 1.4rem;max-width:860px;font-size:1.12rem;opacity:.95}
-    .cta-row{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+    body{margin:0;font:16px/1.6 -apple-system,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:#fff}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+    /* hero */
+    header{background:var(--bg-dark);color:#fff;text-align:center;padding:64px 0 56px}
+    header h1{margin:0 0 8px;font-size:48px;letter-spacing:.2px}
+    header p.lead{margin:0 auto 22px;max-width:900px;color:#d0d7de}
+    .cta{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
     .btn{
-      display:inline-flex;align-items:center;gap:.5rem;
-      padding:.78rem 1.1rem;border-radius:8px;
-      background:var(--cta);color:#fff;text-decoration:none;font-weight:700;
-      border:1px solid rgba(0,0,0,.05);transition:transform .06s ease, background .12s ease;
+      display:inline-flex;align-items:center;gap:10px;
+      background:var(--brand);color:#fff;padding:12px 18px;border-radius:8px;
+      font-weight:700;box-shadow:0 2px 0 rgba(0,0,0,.08)
     }
-    .btn:hover{background:var(--cta-hover);transform:translateY(-1px)}
-    .btn.secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35);font-weight:600}
-    .btn.secondary:hover{background:rgba(255,255,255,.08)}
-    .badge{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .55rem;border-radius:999px;background:rgba(255,255,255,.12);font-size:.85rem}
-    .badges{margin-top:.8rem;display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
+    .btn.secondary{background:#3b82f6}
+    .btn:hover{filter:brightness(1.04)}
+    .platforms{margin-top:16px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      background:#38414a;color:#fff;border-radius:999px;padding:8px 12px
+    }
+    .badge .tag{background:#0ea5e9;padding:6px 10px;border-radius:999px;font-weight:700}
 
-    main{max-width:1100px;margin:auto;padding:2.4rem 1rem}
-    section{max-width:980px;margin:0 auto 2.6rem}
-    h2{color:var(--ink);font-size:1.65rem;margin:0 0 1rem}
-    h3{margin:.2rem 0 .35rem;color:var(--ink);font-size:1.05rem}
-    p.lead{font-size:1.05rem;margin:.2rem 0 1.1rem}
-    .grid{display:grid;gap:16px;grid-template-columns:repeat(2,minmax(0,1fr))}
-    .card{background:var(--bg-soft);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem}
-    @media (max-width:780px){.grid{grid-template-columns:1fr}}
+    /* sections */
+    section{padding:56px 0}
+    h2{margin:0 0 18px;font-size:28px}
+    .muted{color:var(--muted)}
 
-    /* demo cards */
-    .demo-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .demo-card{display:block;text-decoration:none;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--bg);transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease}
-    .demo-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.14)}
-    .thumb{position:relative;aspect-ratio:16/9;background:#000}
-    .thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.03)}
-    .play{position:absolute;inset:0;margin:auto;width:64px;height:64px;line-height:64px;text-align:center;border-radius:50%;background:rgba(255,255,255,.96);color:#e62117;font-size:32px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
-    .demo-card:hover .play{transform:scale(1.05)}
-    .meta{padding:12px 14px 14px}
-    .meta p{margin:0;opacity:.78}
+    /* demos */
+    .demos .grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:20px
+    }
+    .card{
+      border:1px solid #e5e7eb;border-radius:12px;background:#fff;
+      box-shadow:0 2px 8px rgba(0,0,0,.04);transition:transform .12s, box-shadow .12s
+    }
+    .card:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,.08)}
+    .thumb{position:relative;aspect-ratio:16/9;background:#111;overflow:hidden}
+    .thumb img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.03)}
+    .play{
+      position:absolute;inset:0;margin:auto;width:64px;height:64px;border-radius:50%;
+      background:#fff;color:#e62117;display:grid;place-items:center;
+      font-size:28px;box-shadow:0 6px 18px rgba(0,0,0,.25)
+    }
+    .card:hover .play{transform:scale(1.05)}
+    .meta{padding:12px 14px}
+    .meta h3{margin:0 0 4px;font-size:18px}
+    .meta p{margin:0;color:var(--muted)}
 
-    /* comparison table */
-    table{width:100%;border-collapse:collapse;border:1px solid var(--border);background:var(--bg);border-radius:10px;overflow:hidden}
-    th,td{border-top:1px solid var(--border);padding:.7rem .75rem;text-align:left;vertical-align:top}
-    thead th{background:var(--bg-soft);color:var(--ink);border-top:none}
+    /* features grid */
+    .features{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:18px
+    }
+    .panel{background:var(--panel);border-radius:10px;padding:16px}
+
+    /* table */
+    table{border-collapse:collapse;width:100%;background:#fff}
+    th,td{border:1px solid #e5e7eb;padding:10px}
+    th{background:#eff2f6;text-align:left}
 
     /* footer */
-    footer{text-align:center;font-size:.9rem;padding:2rem 1rem;background:var(--bg-soft);border-top:1px solid var(--border)}
+    footer{background:#f6f8fa;text-align:center;padding:26px 0;color:var(--muted);font-size:14px}
+
+    @media (prefers-color-scheme:dark){
+      body{background:#0d1117;color:#e6edf3}
+      header{background:#0d1117}
+      .panel, footer{background:#0f141a}
+      .card{background:#0f141a;border-color:#1f2328}
+      table{background:#0f141a}
+      th{background:#11161c}
+      .muted{color:#9aa4af}
+    }
   </style>
 </head>
 <body>
 
+  <!-- HERO -->
   <header>
-    <h1>ofarrow</h1>
-    <p>Stream Oracle Fusion Cloud data in real time — <strong>native apps</strong> with installers for macOS and Windows. No Java required. Export to CSV, JSON, Excel, or Parquet.</p>
-    <div class="cta-row" role="navigation" aria-label="Primary">
-      <a class="btn" href="https://github.com/krokozyab/ofarrow/releases/latest/download/ofarrow-macos.pkg">⬇ macOS Installer (.pkg)</a>
-      <a class="btn" href="https://github.com/krokozyab/ofarrow/releases/latest/download/ofarrow-windows.msi">⬇ Windows Installer (.msi)</a>
-      <a class="btn secondary" href="https://github.com/krokozyab/ofarrow/releases">All releases</a>
-      <a class="btn secondary" href="https://github.com/krokozyab/ofarrow">GitHub Repo</a>
-    </div>
-    <div class="badges" aria-hidden="true">
-      <span class="badge">🖥️ macOS</span>
-      <span class="badge">🪟 Windows</span>
-      <span class="badge">⚡ Arrow Flight SQL</span>
-      <span class="badge">📦 CSV / JSON / Excel / Parquet</span>
+    <div class="container">
+      <h1>ofarrow</h1>
+      <p class="lead">
+        Stream Oracle Fusion Cloud data in real time — now as native apps with installers for
+        macOS and Windows. No Java setup, no complexity.
+      </p>
+
+      <div class="cta" style="margin-top:6px">
+        <a class="btn" href="https://github.com/krokozyab/ofarrow/releases">
+          ⬇️ Download installers
+        </a>
+        <a class="btn secondary" href="https://github.com/krokozyab/ofarrow">GitHub Repo</a>
+      </div>
+
+      <div class="platforms">
+        <span class="badge"> macOS <span class="tag">Installer</span></span>
+        <span class="badge">Windows <span class="tag">Installer</span></span>
+      </div>
     </div>
   </header>
 
-  <main>
-
-    <!-- Demos -->
-    <section class="demos">
+  <!-- DEMOS -->
+  <section class="demos">
+    <div class="container">
       <h2>Product demos</h2>
-      <div class="demo-grid">
-        <a class="demo-card" href="https://youtu.be/jdHffE1RxuA" target="_blank" rel="noopener">
+      <div class="grid">
+        <a class="card" href="https://youtu.be/jdHffE1RxuA" target="_blank" rel="noopener">
           <div class="thumb">
-            <img src="https://img.youtube.com/vi/jdHffE1RxuA/hqdefault.jpg" alt="IDE demo video thumbnail" />
+            <img src="https://img.youtube.com/vi/jdHffE1RxuA/hqdefault.jpg" alt="IDE demo" />
             <span class="play">▶</span>
           </div>
           <div class="meta">
             <h3>IDE</h3>
-            <p>Author SQL, run queries, inspect results.</p>
+            <p>Query Fusion Cloud data from a desktop IDE.</p>
           </div>
         </a>
 
-        <a class="demo-card" href="https://www.youtube.com/watch?v=K63LvHCZZwM" target="_blank" rel="noopener">
+        <a class="card" href="https://www.youtube.com/watch?v=K63LvHCZZwM" target="_blank" rel="noopener">
           <div class="thumb">
-            <img src="https://img.youtube.com/vi/K63LvHCZZwM/hqdefault.jpg" alt="Excel integration demo video thumbnail" />
+            <img src="https://img.youtube.com/vi/K63LvHCZZwM/hqdefault.jpg" alt="Excel integration demo" />
             <span class="play">▶</span>
           </div>
           <div class="meta">
-            <h3>Excel integration</h3>
-            <p>Export and refresh directly in Excel.</p>
+            <h3>Excel Integration</h3>
+            <p>Export and refresh data directly inside Excel.</p>
           </div>
         </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Why -->
-    <section>
+  <!-- WHY -->
+  <section>
+    <div class="container">
       <h2>Why choose ofarrow?</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Native installers</h3>
-          <p>No Java, no scripts. Install on macOS or Windows and start streaming Fusion data immediately.</p>
+      <div class="features">
+        <div class="panel">
+          <h3>Install & go</h3>
+          <p>Signed installers for macOS and Windows. Launch the app and connect — that’s it.</p>
         </div>
-        <div class="card">
-          <h3>One tool, many formats</h3>
-          <p>Give analysts Excel, data engineers Parquet, developers JSON, and legacy systems CSV — from the same server.</p>
+        <div class="panel">
+          <h3>Format freedom</h3>
+          <p>Give analysts Excel, engineers Parquet, developers JSON, and legacy systems CSV.</p>
         </div>
-        <div class="card">
-          <h3>High-speed streaming</h3>
-          <p>Arrow columnar batches flow straight into Pandas, Spark, or BI dashboards with minimal overhead.</p>
+        <div class="panel">
+          <h3>Cloud-scale speed</h3>
+          <p>Streams Arrow batches with minimal overhead straight into tools and lakehouses.</p>
         </div>
-        <div class="card">
-          <h3>Open & vendor-neutral</h3>
-          <p>Fully open-source, zero lock-in. Use your own storage and tools, scale as you grow.</p>
+        <div class="panel">
+          <h3>Zero lock-in</h3>
+          <p>Open source, transparent, and portable. Keep your data and your options open.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Comparison -->
-    <section>
+  <!-- TABLE COMPARE -->
+  <section style="background:#f6f8fa">
+    <div class="container">
       <h2>From night-long ETL to near-instant insight</h2>
       <table>
         <thead>
-          <tr><th>Legacy workflow</th><th>With ofarrow</th></tr>
+          <tr><th style="width:50%">Yesterday’s workflow</th><th>ofarrow approach</th></tr>
         </thead>
         <tbody>
-          <tr><td>Wait overnight for bulk extracts</td><td>Query live whenever you need data</td></tr>
-          <tr><td>Stage intermediate files to object storage</td><td>Stream directly into notebooks and dashboards</td></tr>
-          <tr><td>Convert formats downstream</td><td>Choose CSV, JSON, Excel, or Parquet at the source</td></tr>
+          <tr><td>Schedule bulky ZIP extracts and wait overnight</td><td>Query live via SQL or REST whenever you need fresh numbers</td></tr>
+          <tr><td>Stage files into object storage before use</td><td>Stream directly into Pandas, Spark, or your lakehouse</td></tr>
+          <tr><td>Convert to required formats downstream</td><td>Choose CSV, JSON, Excel, or Parquet at the source</td></tr>
         </tbody>
       </table>
-    </section>
+    </div>
+  </section>
 
-    <!-- Quick start -->
-    <section>
-      <h2>Quick start</h2>
-      <p class="lead">It’s as simple as install → launch → connect.</p>
-      <div class="grid">
-        <div class="card">
-          <h3>1) Install</h3>
-          <p>Download the <strong>macOS (.pkg)</strong> or <strong>Windows (.msi)</strong> installer from the <a href="https://github.com/krokozyab/ofarrow/releases">releases page</a>.</p>
-        </div>
-        <div class="card">
-          <h3>2) Launch</h3>
-          <p>Start the app. Your Arrow Flight SQL and REST endpoints come up automatically.</p>
-        </div>
-        <div class="card">
-          <h3>3) Connect</h3>
-          <p>Use DBeaver, Python, Excel, Spark, or any client supporting Arrow Flight SQL or HTTP.</p>
-        </div>
-        <div class="card">
-          <h3>4) Export</h3>
-          <p>Export results instantly as <strong>CSV</strong>, <strong>JSON</strong>, <strong>Excel</strong>, or <strong>Parquet</strong>.</p>
-        </div>
-      </div>
-    </section>
+  <!-- WORKFLOW -->
+  <section>
+    <div class="container">
+      <h2>Typical workflow</h2>
+      <ol>
+        <li><strong>Install</strong> the app for your platform and launch it.</li>
+        <li><strong>Explore</strong> data in DBeaver, notebooks, or BI tools using Arrow Flight.</li>
+        <li><strong>Export</strong> Parquet/CSV for S3, ADLS, or downstream analytics engines.</li>
+        <li><strong>Automate</strong> daily jobs with simple REST calls — no heavy middleware.</li>
+      </ol>
+    </div>
+  </section>
 
-    <!-- Resources -->
-    <section>
+  <!-- LINKS -->
+  <section style="background:#f6f8fa">
+    <div class="container">
       <h2>Further reading & resources</h2>
       <ul>
         <li>Deep-dive article → <a href="https://medium.com/@rudenko.s/simplifying-oracle-fusion-data-access-with-ofarrow-a78f59a18b12">Simplifying Oracle Fusion Data Access with ofarrow</a></li>
         <li>Companion JDBC driver → <a href="https://krokozyab.github.io/ofjdbc/">ofjdbc — query Fusion with any SQL IDE</a></li>
         <li>Source & issues → <a href="https://github.com/krokozyab/ofarrow">GitHub repository</a></li>
       </ul>
-    </section>
-
-  </main>
+    </div>
+  </section>
 
   <footer>
-    © 2025 • Maintained by <a href="https://github.com/krokozyab">Sergey Rudenko</a>
+    <div class="container">© 2025 • Maintained by <a href="https://github.com/krokozyab">Sergey Rudenko</a></div>
   </footer>
 
 </body>
