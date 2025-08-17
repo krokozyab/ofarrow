@@ -11,6 +11,8 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 ⚡ **Streaming Data Access** - Handle datasets with automatic pagination   
 🎯 **Minimal Configuration** - Just unarchive OTBI report and provide credentials  
 
+[![Watch the demo](https://img.shields.io/badge/▶️%20Watch%20Demo-red?logo=youtube&logoColor=white)](https://youtu.be/jdHffE1RxuA?si=Fmi1jE9S4vfZ1Z4T)
+
 ## Why Choose This Over Traditional ETL?
 
 | Traditional ETL              | Oracle Fusion Flight SQL              |
@@ -30,8 +32,6 @@ Transform your Oracle Fusion into a modern data platform with **no servers to ma
 - **Data Engineers** - Parquet exports for data lakes and analytics
 - **Integration Teams** - Standards-based API for any programming language
 - **ETL Orchestration** - Works seamlessly with Airflow, Prefect, Dagster, and other workflow engines
-
-  [![IDE Watch the demo](https://img.shields.io/badge/▶️%20Watch%20Demo-red?logo=youtube&logoColor=white)](https://youtu.be/jdHffE1RxuA?si=Fmi1jE9S4vfZ1Z4T)
 
 ---
 
