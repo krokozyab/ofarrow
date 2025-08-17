@@ -42,23 +42,113 @@
     <a class="btn" href="https://github.com/krokozyab/ofarrow">GitHub&nbsp;Repo</a>
 </header>
 
-<section>
-  <h3>IDE</h3>
-  <p>
-    <a href="https://youtu.be/jdHffE1RxuA?si=Fmi1jE9S4vfZ1Z4T" target="_blank">
-      <img src="https://img.shields.io/badge/▶️%20Watch%20Demo-red?logo=youtube&logoColor=white" 
-           alt="IDE Demo">
-    </a>
-  </p>
+<section class="demos">
+  <h2>Product demos</h2>
 
-  <h3>Excel Integration</h3>
-  <p>
-    <a href="https://www.youtube.com/watch?v=K63LvHCZZwM" target="_blank">
-      <img src="https://img.shields.io/badge/▶️%20Watch%20Demo-red?logo=youtube&logoColor=white" 
-           alt="Excel Demo">
+  <div class="demo-grid">
+    <!-- IDE -->
+    <a class="demo-card" href="https://youtu.be/jdHffE1RxuA" target="_blank" rel="noopener">
+      <div class="thumb">
+        <img
+          src="https://img.youtube.com/vi/jdHffE1RxuA/hqdefault.jpg"
+          alt="IDE demo video thumbnail">
+        <span class="play">▶</span>
+      </div>
+      <div class="meta">
+        <h3>IDE</h3>
+        <p>See authoring, running queries, and results.</p>
+      </div>
     </a>
-  </p>
+
+    <!-- Excel Integration -->
+    <a class="demo-card" href="https://www.youtube.com/watch?v=K63LvHCZZwM" target="_blank" rel="noopener">
+      <div class="thumb">
+        <img
+          src="https://img.youtube.com/vi/K63LvHCZZwM/hqdefault.jpg"
+          alt="Excel integration demo video thumbnail">
+        <span class="play">▶</span>
+      </div>
+      <div class="meta">
+        <h3>Excel Integration</h3>
+        <p>Export and refresh data directly from Excel.</p>
+      </div>
+    </a>
+  </div>
 </section>
+
+<style>
+  /* Scoped styles for demo cards */
+  .demos { max-width: 1100px; margin: 3rem auto; padding: 0 1rem; }
+  .demos h2 { text-align: center; margin-bottom: 1.25rem; }
+
+  .demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+
+  .demo-card {
+    display: block;
+    text-decoration: none;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--card-bg, #fff);
+    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,.04);
+  }
+  .demo-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+    border-color: rgba(0,0,0,.14);
+  }
+
+  .thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #111;
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(1.05) contrast(1.02);
+  }
+  .play {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 64px; height: 64px;
+    line-height: 64px;
+    text-align: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,.92);
+    color: #e62117; /* YouTube red */
+    font-size: 32px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.25);
+    transition: transform .12s ease, background .12s ease;
+  }
+  .demo-card:hover .play { transform: scale(1.05); background: #fff; }
+
+  .meta { padding: 12px 14px 14px; }
+  .meta h3 {
+    margin: 0 0 4px;
+    font-size: 1.05rem;
+    color: inherit;
+  }
+  .meta p {
+    margin: 0;
+    opacity: .75;
+    font-size: .95rem;
+  }
+
+  /* Optional: dark themes */
+  @media (prefers-color-scheme: dark) {
+    .demo-card { --card-bg: #1f2328; border-color: rgba(255,255,255,.08); }
+    .demo-card:hover { border-color: rgba(255,255,255,.18); }
+  }
+</style>
 
 <section>
     <h2>Why choose ofarrow?</h2>
