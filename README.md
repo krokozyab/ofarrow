@@ -196,6 +196,9 @@ Consult with your organization's security team before deployment. Ensure complia
 
 ## 📚 Real-World Examples
 
+### 📊 Export to Google sheets
+[View full code on Gist] (https://gist.github.com/krokozyab/145eda5f8f53c997a9c0e918f3bc93bc)
+
 ### 🐍 Python Data Pipeline
 ```python
 # ETL Pipeline with Polars (Efficient Processing)
