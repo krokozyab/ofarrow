@@ -2,23 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ofarrow – Arrow Flight SQL Server for Oracle Fusion Cloud</title>
-    <meta name="description" content="ofarrow streams Oracle Fusion Cloud data in real time. One open-source JAR, any format – CSV, JSON, Excel, Parquet – zero vendor lock-in.">
+    <title>ofarrow – Native Arrow Flight SQL Server for Oracle Fusion Cloud</title>
+    <meta name="description" content="ofarrow streams Oracle Fusion Cloud data in real time. Now available as native apps with installers for macOS and Windows – no Java required. Export to CSV, JSON, Excel, Parquet, or Arrow.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        /* ➜ colours and spacing intentionally match https://krokozyab.github.io/ofjdbc/ */
         :root {
-            --bg-dark:#24292e;   /* same charcoal header */
-            --blue-btn:#2da44e;  /* green CTA button from ofjdbc theme */
+            --bg-dark:#24292e;
+            --cta:#2da44e;
             --text:#434b53;
             --bg-light:#f6f8fa;
         }
-
         body{font-family:-apple-system,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:var(--text);line-height:1.7;background:#fff}
         header{background:var(--bg-dark);color:#fff;text-align:center;padding:3.5rem 1rem}
-        header h1{margin:0 0 .5rem;font-size:2.4rem;font-weight:600}
-        header p{margin:0 0 1.4rem;font-size:1.12rem;max-width:780px;margin-inline:auto}
-        .btn{display:inline-block;background:var(--blue-btn);color:#fff;text-decoration:none;font-weight:600;padding:.72rem 1.3rem;border-radius:6px;margin:.33rem}
+        header h1{margin:0 0 .5rem;font-size:2.6rem;font-weight:600}
+        header p{margin:0 0 1.4rem;font-size:1.14rem;max-width:800px;margin-inline:auto}
+        .btn{display:inline-block;background:var(--cta);color:#fff;text-decoration:none;font-weight:600;padding:.75rem 1.4rem;border-radius:6px;margin:.33rem}
+        .os-badges img{height:42px;margin:0 .4rem;vertical-align:middle}
         section{padding:2.6rem 1rem;max-width:860px;margin:auto}
         h2{margin-top:0;color:#1f2328;font-size:1.65rem}
         ul{padding-left:1.2rem}
@@ -37,137 +36,60 @@
 
 <header>
     <h1>ofarrow</h1>
-    <p>Stream Oracle Fusion Cloud data in real time — one lightweight JAR, any format.</p>
-    <a class="btn" href="https://github.com/krokozyab/ofarrow/releases">Download</a>
+    <p>Stream Oracle Fusion Cloud data in real time – now as native apps with installers for macOS and Windows. No Java setup, no complexity.</p>
+    <a class="btn" href="https://github.com/krokozyab/ofarrow/releases">⬇ Download Installers</a>
     <a class="btn" href="https://github.com/krokozyab/ofarrow">GitHub&nbsp;Repo</a>
+    <div class="os-badges" style="margin-top:1rem;">
+        <img src="https://img.shields.io/badge/macOS-Installer-blue?logo=apple&logoColor=white" alt="macOS Installer">
+        <img src="https://img.shields.io/badge/Windows-Installer-blue?logo=windows&logoColor=white" alt="Windows Installer">
+    </div>
 </header>
 
 <section class="demos">
   <h2>Product demos</h2>
-
   <div class="demo-grid">
-    <!-- IDE -->
     <a class="demo-card" href="https://youtu.be/jdHffE1RxuA" target="_blank" rel="noopener">
       <div class="thumb">
-        <img
-          src="https://img.youtube.com/vi/jdHffE1RxuA/hqdefault.jpg"
-          alt="IDE demo video thumbnail">
+        <img src="https://img.youtube.com/vi/jdHffE1RxuA/hqdefault.jpg" alt="IDE demo video thumbnail">
         <span class="play">▶</span>
       </div>
       <div class="meta">
         <h3>IDE</h3>
-        <p>See authoring, running queries, and results.</p>
+        <p>Query Fusion Cloud data from a desktop IDE.</p>
       </div>
     </a>
 
-    <!-- Excel Integration -->
     <a class="demo-card" href="https://www.youtube.com/watch?v=K63LvHCZZwM" target="_blank" rel="noopener">
       <div class="thumb">
-        <img
-          src="https://img.youtube.com/vi/K63LvHCZZwM/hqdefault.jpg"
-          alt="Excel integration demo video thumbnail">
+        <img src="https://img.youtube.com/vi/K63LvHCZZwM/hqdefault.jpg" alt="Excel integration demo video thumbnail">
         <span class="play">▶</span>
       </div>
       <div class="meta">
         <h3>Excel Integration</h3>
-        <p>Export and refresh data directly from Excel.</p>
+        <p>Export and refresh directly inside Excel.</p>
       </div>
     </a>
   </div>
 </section>
 
-<style>
-  /* Scoped styles for demo cards */
-  .demos { max-width: 1100px; margin: 3rem auto; padding: 0 1rem; }
-  .demos h2 { text-align: center; margin-bottom: 1.25rem; }
-
-  .demo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 18px;
-  }
-
-  .demo-card {
-    display: block;
-    text-decoration: none;
-    border: 1px solid rgba(0,0,0,.08);
-    border-radius: 12px;
-    overflow: hidden;
-    background: var(--card-bg, #fff);
-    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-    box-shadow: 0 2px 10px rgba(0,0,0,.04);
-  }
-  .demo-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,.08);
-    border-color: rgba(0,0,0,.14);
-  }
-
-  .thumb {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    background: #111;
-  }
-  .thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: saturate(1.05) contrast(1.02);
-  }
-  .play {
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    width: 64px; height: 64px;
-    line-height: 64px;
-    text-align: center;
-    border-radius: 50%;
-    background: rgba(255,255,255,.92);
-    color: #e62117; /* YouTube red */
-    font-size: 32px;
-    box-shadow: 0 4px 14px rgba(0,0,0,.25);
-    transition: transform .12s ease, background .12s ease;
-  }
-  .demo-card:hover .play { transform: scale(1.05); background: #fff; }
-
-  .meta { padding: 12px 14px 14px; }
-  .meta h3 {
-    margin: 0 0 4px;
-    font-size: 1.05rem;
-    color: inherit;
-  }
-  .meta p {
-    margin: 0;
-    opacity: .75;
-    font-size: .95rem;
-  }
-
-  /* Optional: dark themes */
-  @media (prefers-color-scheme: dark) {
-    .demo-card { --card-bg: #1f2328; border-color: rgba(255,255,255,.08); }
-    .demo-card:hover { border-color: rgba(255,255,255,.18); }
-  }
-</style>
-
 <section>
     <h2>Why choose ofarrow?</h2>
     <div class="grid">
         <div>
-            <h3>Spin-up in seconds</h3>
-            <p>Place <code>ofarrow.jar</code> next to any project, point it at an existing OTBI report and run&colon; your Arrow Flight and REST endpoints are online in under a minute.</p>
+            <h3>Native installers</h3>
+            <p>No Java, no scripts. Just install on macOS or Windows and start streaming Fusion data immediately.</p>
         </div>
         <div>
-            <h3>Format freedom</h3>
-            <p>Give analysts Excel, data-engineers Parquet, developers JSON, and legacy systems CSV – all from a single URL parameter.</p>
+            <h3>One tool, any format</h3>
+            <p>Give analysts Excel, data engineers Parquet, developers JSON, and legacy systems CSV – all with one server.</p>
         </div>
         <div>
-            <h3>Cloud-scale speed</h3>
-            <p>The service streams columnar Arrow batches that glide from Fusion into notebooks, dashboards or lake-houses with minimal overhead.</p>
+            <h3>High-speed streaming</h3>
+            <p>Arrow columnar batches move seamlessly into Pandas, Spark, or BI dashboards.</p>
         </div>
         <div>
-            <h3>Zero lock-in</h3>
-            <p>ofarrow is 100 % open source – no subscriptions, proprietary storage, or hidden throttles. It scales as your data lake grows.</p>
+            <h3>Open & vendor-neutral</h3>
+            <p>No lock-in, no subscriptions. 100% open-source – scales with your data lake.</p>
         </div>
     </div>
 </section>
@@ -175,31 +97,31 @@
 <section style="background:var(--bg-light);">
     <h2>From night-long ETL to near-instant insight</h2>
     <table>
-        <thead><tr><th style="width:50%">Yesterday’s workflow</th><th>ofarrow approach</th></tr></thead>
+        <thead><tr><th>Legacy workflow</th><th>ofarrow</th></tr></thead>
         <tbody>
-        <tr><td>Schedule bulky ZIP extracts and wait overnight</td><td>Query live with SQL or REST whenever you need fresh numbers</td></tr>
-        <tr><td>Stage files into object storage before use</td><td>Stream directly into Pandas, Spark or your lake-house</td></tr>
-        <tr><td>Convert to required formats downstream</td><td>Choose CSV, JSON, Excel, Parquet or Hive partitions at the source</td></tr>
+        <tr><td>Wait overnight for bulk extracts</td><td>Query live whenever you need data</td></tr>
+        <tr><td>Stage intermediate files to object storage</td><td>Stream directly into notebooks and dashboards</td></tr>
+        <tr><td>Convert formats downstream</td><td>Pick CSV, JSON, Excel, or Parquet at the source</td></tr>
         </tbody>
     </table>
 </section>
 
 <section>
-    <h2>Typical workflow</h2>
+    <h2>Quick start</h2>
     <ol>
-        <li><strong>Run</strong> <code>java -jar ofarrow.jar</code>.</li>
-        <li><strong>Explore</strong> data quickly in DBeaver, a Jupyter notebook, or any BI tool using the Arrow Flight connector.</li>
-        <li><strong>Export</strong> partitioned Parquet to S3 or ADLS for Athena, Starburst, or Snowflake.</li>
-        <li><strong>Automate</strong> daily jobs with simple <code>curl</code> calls – no heavyweight integration middleware.</li>
+        <li><strong>Install</strong> the macOS `.pkg` or Windows `.msi` from the <a href="https://github.com/krokozyab/ofarrow/releases">releases page</a>.</li>
+        <li><strong>Launch</strong> the app – your Arrow Flight and REST endpoints are up.</li>
+        <li><strong>Connect</strong> via Excel, Python, or Spark.</li>
+        <li><strong>Export</strong> data instantly in CSV, JSON, Excel, or Parquet.</li>
     </ol>
 </section>
 
 <section style="background:var(--bg-light);">
-    <h2>Further reading &amp; resources</h2>
+    <h2>Further reading</h2>
     <ul>
-        <li>Deep-dive article on Medium → <a href="https://medium.com/@rudenko.s/simplifying-oracle-fusion-data-access-with-ofarrow-a78f59a18b12">Simplifying Oracle Fusion Data Access&nbsp;with ofarrow</a></li>
-        <li>Companion JDBC driver → <a href="https://krokozyab.github.io/ofjdbc/">ofjdbc – query Fusion with any SQL IDE</a></li>
-        <li>Source code &amp; issues → <a href="https://github.com/krokozyab/ofarrow">GitHub repository</a></li>
+        <li><a href="https://medium.com/@rudenko.s/simplifying-oracle-fusion-data-access-with-ofarrow-a78f59a18b12">Medium article</a> – deep dive into ofarrow</li>
+        <li><a href="https://krokozyab.github.io/ofjdbc/">ofjdbc</a> – companion JDBC driver for IDEs</li>
+        <li><a href="https://github.com/krokozyab/ofarrow">GitHub repository</a> – source & issues</li>
     </ul>
 </section>
 
