@@ -338,7 +338,8 @@ if outliers_df.height > 0:
 
 print("✅ Total rows:", len(df))
 ```
-https://gist.github.com/krokozyab/dcd1b3758ebb388ea2327fc67bc51686
+[View full code on Gist](https://gist.github.com/krokozyab/dcd1b3758ebb388ea2327fc67bc51686)
+
 ## 🔗 Other
 
 - **Root Project:** [ofjdbc - Oracle Fusion JDBC Driver](https://github.com/krokozyab/ofjdbc)
